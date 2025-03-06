@@ -1,21 +1,31 @@
 import pandas as pd
 import json
-import time
-import csv 
 
+# Define the keys for the JSON object
+keys = ["Name", "Latitude", "Longitude", "Altitude", "Temperature", "Pressure", "Humidity", "Garbage"]
 
-csv_file = "HARdata.csv"
+def csv_to_json(csv_data):
+    # Split the comma-separated values
+    values = csv_data.split(',')
+    
+    # Check if the number of values matches the number of keys
+    if len(values) != len(keys):
+        raise ValueError(f"Expected {len(keys)} values, but got {len(values)}.")
+    
+    # Create a dictionary by mapping keys to values
+    data_dict = dict(zip(keys, values))
+    
+    # Convert the dictionary to a JSON object
+    json_data = json.dumps(data_dict, indent=4)
+    
+    return json_data
 
-#convert csv data into json
-df = pd.read_csv(csv_file)
-json_data = df.to_json(orient="records")
-print(json_data)
+# Example serial data (comma-separated)
+serial_data = "$HAR,12.3456,78.9012,100.5,25.3,1013.25,45.2,ExtraData"
 
-# Open CSV file and read row by row
-with open(csv_file, "r") as file:
-    reader = csv.reader(file)  # Corrected this line
-    header = next(reader)  # Read the header row (optional)
+# Convert to JSON
+json_object = csv_to_json(serial_data)
 
-    for row in reader:
-        print(", ".join(row))  # Print each row as plain text
-        time.sleep(3)  # Wait for 3 seconds
+# Print the resulting JSON object
+print(json_object)
+
