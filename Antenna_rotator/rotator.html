@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Rotator Status</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; text-align: center; }
+    .container { max-width: 400px; margin: 100px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1 { margin-bottom: 20px; }
+    .status { font-size: 20px; font-weight: bold; margin-top: 20px; padding: 15px; background: #eaeaea; border-radius: 5px; }
+    .connected { color: green; }
+    .disconnected { color: red; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rotator Position</h1>
+    <p id="connectionStatus" class="disconnected">Disconnected</p>
+    <div class="status">
+      <p>Azimuth: <span id="azimuth">--</span>°</p>
+      <p>Elevation: <span id="elevation">--</span>°</p>
+    </div>
+  </div>
+
+  <!-- Include Socket.IO Client Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
+  <script>
+    const serverURL = 'http://localhost:5053';
+    const socket = io(serverURL, { transports: ['websocket', 'polling'], reconnection: true, reconnectionAttempts: 5, reconnectionDelay: 3000 });
+
+    function updateUI(data) {
+      if (!isNaN(data.azimuth) && !isNaN(data.elevation)) {
+        document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
+        document.getElementById('elevation').textContent = data.elevation.toFixed(2);
+      }
+    }
+
+    // Handle connection status
+    socket.on('connect', () => {
+      document.getElementById('connectionStatus').textContent = 'Connected';
+      document.getElementById('connectionStatus').className = 'connected';
+    });
+
+    socket.on('disconnect', () => {
+      document.getElementById('connectionStatus').textContent = 'Disconnected';
+      document.getElementById('connectionStatus').className = 'disconnected';
+    });
+
+    // Handle real-time updates from backend
+    socket.on('status_update', updateUI);
+    socket.on('rotation_update', updateUI);
+  </script>
+</body>
+</html>

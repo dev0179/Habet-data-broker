@@ -1,39 +1,18 @@
 import serial
 import json
 import threading
-import socket
+import asyncio
+import websockets
 import time
 
-# import serial.tools.list_ports
-
-# # List all available serial ports
-
-# def detect_esp32_port():
-#     # List all available serial ports
-#     ports = serial.tools.list_ports.comports()
-#     print("Available serial ports:")
-#     for port in ports:
-#         print(f"Port: {port.device}, Description: {port.description}")
-    
-#     # Look for ESP32 or related devices
-#     for port in ports:
-#         if "ESP32" in port.description or "CP210x" in port.description or "CH340" in port.description:
-#             print(f"Found ESP32 on {port.device}")
-#             return port.device  # Return the device name (e.g., COM3)
-    
-#     raise Exception("ESP32 not found. Please check the device connection.")
-
-# # Run and detect ESP32
-# SERIAL_PORT = detect_esp32_port()
-# print(f"Using serial port: {SERIAL_PORT}")
-
-# Automatically detect and set the serial port
+# Serial Port Configuration
 SERIAL_PORT = 'COM9'
 SERIAL_BAUDRATE = 115200
-TCP_SERVER_PORT = 9000
 
+# WebSocket Server Configuration
+WEBSOCKET_PORT = 9000
 
-# Data template
+# Shared Data Dictionary
 latest_data = {
     "time": None,
     "lat": None,
@@ -48,8 +27,11 @@ latest_data = {
     "other": None
 }
 
-# Lock for thread-safe data access
+# Lock for thread-safe access
 data_lock = threading.Lock()
+
+# List of connected WebSocket clients
+connected_clients = set()
 
 # ========== Serial Reading Thread ==========
 def serial_reader():
@@ -90,41 +72,43 @@ def serial_reader():
         except Exception as e:
             print(f"[ERROR] Error reading/parsing serial: {e}")
 
-# ========== TCP Server for Open MCT ==========
-def tcp_server():
-    print(f"[INFO] Starting TCP server on port {TCP_SERVER_PORT} for Open MCT")
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(('', TCP_SERVER_PORT))
-    server_socket.listen(5)
+# ========== WebSocket Server ==========
+async def websocket_handler(websocket, path):
+    global connected_clients
+    print(f"[INFO] New WebSocket client connected: {websocket.remote_address}")
+    
+    # Add client to the set
+    connected_clients.add(websocket)
+    
+    try:
+        while True:
+            with data_lock:
+                response = json.dumps(latest_data)
+            
+            # Send latest telemetry data to the client
+            await websocket.send(response)
+            print(f"[INFO] Sent data to client {websocket.remote_address}: {response}")
 
-    while True:
-        client_socket, addr = server_socket.accept()
-        print(f"[INFO] Open MCT connected from {addr}")
+            # Send data every 1 second (adjust as needed)
+            await asyncio.sleep(1)
 
-        try:
-            with client_socket:
-                while True:
-                    # Wait for client to request data (optional: check for specific keyword)
-                    request = client_socket.recv(1024).decode('utf-8').strip()
-                    if not request:
-                        break  # Client disconnected
+    except websockets.exceptions.ConnectionClosed:
+        print(f"[INFO] Client {websocket.remote_address} disconnected")
 
-                    print(f"[DEBUG] Received request: {request}")
+    finally:
+        connected_clients.remove(websocket)
 
-                    # Prepare and send latest data as JSON
-                    with data_lock:
-                        response = json.dumps(latest_data)
-                    client_socket.sendall(response.encode('utf-8'))
-                    print(f"[INFO] Sent data to Open MCT: {response}")
-
-        except Exception as e:
-            print(f"[ERROR] TCP connection error: {e}")
+# ========== Start WebSocket Server ==========
+async def start_websocket_server():
+    server = await websockets.serve(websocket_handler, "0.0.0.0", WEBSOCKET_PORT)
+    print(f"[INFO] WebSocket server started on port {WEBSOCKET_PORT}")
+    await server.wait_closed()
 
 # ========== Main ==========
 if __name__ == '__main__':
-    # Start serial reader in background
+    # Start Serial Reader in a Background Thread
     serial_thread = threading.Thread(target=serial_reader, daemon=True)
     serial_thread.start()
 
-    # Start TCP server to serve Open MCT
-    tcp_server()
+    # Start WebSocket Server
+    asyncio.run(start_websocket_server())

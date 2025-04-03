@@ -1,0 +1,932 @@
+2025-04-03 15:42:41,410 - [ERROR] Cannot open serial port COM9: could not open port 'COM9': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2025-04-03 15:42:41,456 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:41,456 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:42,499 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:42,499 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:43,555 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:43,555 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:44,612 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:44,612 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:45,702 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:45,703 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:46,747 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:46,748 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:47,820 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:47,820 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:48,866 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:48,866 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:49,912 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:49,912 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:50,950 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:50,950 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:52,012 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:52,013 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:53,088 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:53,089 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:54,132 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:54,132 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:55,175 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:55,175 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:56,233 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:56,233 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:57,292 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:57,292 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:58,339 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:58,339 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:42:59,382 - [DEBUG] Rotator raw status: 
+2025-04-03 15:42:59,383 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:00,440 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:00,441 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:01,496 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:01,496 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:02,535 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:02,535 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:03,579 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:03,579 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:04,638 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:04,638 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:05,694 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:05,695 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:06,756 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:06,757 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:07,793 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:07,793 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:08,867 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:08,867 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:09,946 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:09,946 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:10,987 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:10,987 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:12,030 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:12,030 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:13,073 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:13,073 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:14,133 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:14,133 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:15,202 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:15,202 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:16,246 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:16,247 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:17,323 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:17,323 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:18,394 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:18,394 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:19,451 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:19,451 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:20,490 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:20,490 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:21,567 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:21,567 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:22,608 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:22,609 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:23,682 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:23,683 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:24,719 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:24,719 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:25,780 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:25,781 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:26,826 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:26,826 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:27,882 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:27,882 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:28,939 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:28,939 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:29,985 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:29,985 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:31,028 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:31,028 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:32,071 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:32,071 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:33,129 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:33,129 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:34,170 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:34,170 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:35,231 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:35,231 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:36,269 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:36,269 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:37,314 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:37,314 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:38,352 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:38,352 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:39,395 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:39,395 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:40,434 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:40,434 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:41,480 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:41,480 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:42,523 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:42,523 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:43,564 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:43,564 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:44,605 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:44,605 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:45,646 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:45,646 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:46,690 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:46,690 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:47,737 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:47,737 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:48,776 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:48,776 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:49,832 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:49,832 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:50,873 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:50,873 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:51,908 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:51,909 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:52,944 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:52,944 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:53,990 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:53,990 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:55,034 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:55,035 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:56,073 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:56,073 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:57,114 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:57,114 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:58,146 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:58,146 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:43:59,187 - [DEBUG] Rotator raw status: 
+2025-04-03 15:43:59,187 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:00,230 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:00,230 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:01,272 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:01,273 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:02,312 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:02,313 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:03,371 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:03,371 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:04,413 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:04,413 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:05,455 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:05,456 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:06,501 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:06,502 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:07,559 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:07,559 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:08,601 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:08,601 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:09,658 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:09,658 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:10,706 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:10,706 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:11,781 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:11,781 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:12,841 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:12,842 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:13,916 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:13,916 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:14,957 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:14,957 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:15,999 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:15,999 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:17,036 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:17,036 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:18,082 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:18,082 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:19,127 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:19,127 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:20,163 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:20,163 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:21,199 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:21,199 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:22,239 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:22,239 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:23,298 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:23,299 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:24,340 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:24,340 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:25,385 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:25,385 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:26,443 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:26,443 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:27,484 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:27,484 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:28,538 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:28,538 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:29,571 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:29,572 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:30,612 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:30,612 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:31,653 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:31,654 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:32,712 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:32,712 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:33,754 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:33,754 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:34,796 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:34,796 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:35,858 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:35,858 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:36,914 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:36,914 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:37,978 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:37,978 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:39,014 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:39,014 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:40,087 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:40,087 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:41,133 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:41,133 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:42,192 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:42,192 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:43,254 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:43,255 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:44,340 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:44,340 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:45,379 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:45,380 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:46,426 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:46,426 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:47,480 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:47,480 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:48,523 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:48,523 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:49,749 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:49,749 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:50,945 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:50,945 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:52,005 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:52,006 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:53,047 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:53,047 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:54,082 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:54,082 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:55,120 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:55,120 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:56,176 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:56,176 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:57,247 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:57,247 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:58,287 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:58,288 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:44:59,500 - [DEBUG] Rotator raw status: 
+2025-04-03 15:44:59,500 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:00,539 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:00,539 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:01,586 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:01,586 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:02,632 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:02,632 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:03,686 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:03,687 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:04,729 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:04,729 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:05,791 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:05,791 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:06,830 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:06,830 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:07,886 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:07,886 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:08,958 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:08,958 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:09,997 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:09,998 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:11,031 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:11,031 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:12,071 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:12,071 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:13,111 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:13,111 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:14,150 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:14,150 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:15,183 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:15,183 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:16,256 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:16,256 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:17,299 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:17,299 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:18,342 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:18,342 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:19,401 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:19,401 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:20,458 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:20,458 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:21,502 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:21,502 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:22,548 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:22,548 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:23,594 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:23,595 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:24,632 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:24,633 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:25,670 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:25,670 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:26,711 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:26,711 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:27,748 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:27,748 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:28,786 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:28,787 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:29,829 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:29,830 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:30,888 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:30,888 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:31,921 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:31,921 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:32,968 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:32,968 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:34,025 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:34,025 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:35,066 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:35,066 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:36,126 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:36,126 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:37,184 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:37,185 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:38,230 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:38,230 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:39,272 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:39,273 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:40,333 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:40,334 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:41,385 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:41,385 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:42,436 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:42,436 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:43,474 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:43,474 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:44,519 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:44,519 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:45,580 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:45,580 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:46,621 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:46,621 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:47,694 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:47,694 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:48,771 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:48,771 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:49,832 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:49,833 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:50,865 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:50,865 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:51,907 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:51,908 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:52,950 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:52,950 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:54,006 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:54,007 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:55,081 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:55,082 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:56,136 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:56,136 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:57,178 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:57,179 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:58,223 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:58,223 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:45:59,267 - [DEBUG] Rotator raw status: 
+2025-04-03 15:45:59,267 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:00,305 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:00,306 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:01,350 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:01,350 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:02,395 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:02,396 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:03,457 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:03,458 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:04,509 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:04,510 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:05,644 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:05,644 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:06,695 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:06,695 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:07,754 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:07,754 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:08,806 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:08,806 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:09,877 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:09,877 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:10,909 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:10,909 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:11,949 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:11,949 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:13,005 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:13,006 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:14,057 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:14,057 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:15,107 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:15,108 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:16,148 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:16,148 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:17,191 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:17,192 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:18,249 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:18,249 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:19,322 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:19,322 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:20,364 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:20,364 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:21,410 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:21,410 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:22,448 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:22,448 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:23,510 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:23,510 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:24,555 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:24,555 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:25,629 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:25,630 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:26,675 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:26,675 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:27,715 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:27,715 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:28,749 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:28,749 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:29,788 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:29,788 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:30,831 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:30,831 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:31,870 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:31,871 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:32,914 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:32,914 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:33,957 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:33,957 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:35,000 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:35,001 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:36,056 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:36,056 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:37,099 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:37,100 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:38,141 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:38,141 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:39,187 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:39,187 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:40,235 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:40,235 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:41,300 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:41,300 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:42,359 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:42,359 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:43,406 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:43,406 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:44,437 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:44,438 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:45,481 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:45,481 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:46,559 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:46,559 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:47,604 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:47,604 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:48,676 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:48,676 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:49,764 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:49,764 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:50,805 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:50,805 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:51,876 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:51,876 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:52,934 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:52,934 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:53,975 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:53,975 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:55,035 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:55,036 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:56,109 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:56,109 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:57,148 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:57,148 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:58,207 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:58,207 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:46:59,283 - [DEBUG] Rotator raw status: 
+2025-04-03 15:46:59,283 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:00,327 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:00,327 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:01,382 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:01,382 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:02,419 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:02,420 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:03,482 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:03,482 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:04,519 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:04,520 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:05,556 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:05,556 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:06,630 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:06,630 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:07,668 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:07,668 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:08,705 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:08,706 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:09,746 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:09,746 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:10,793 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:10,793 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:11,835 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:11,835 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:12,878 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:12,879 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:13,910 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:13,911 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:14,968 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:14,968 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:16,012 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:16,014 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:17,056 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:17,056 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:18,095 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:18,095 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:19,135 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:19,136 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:20,178 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:20,178 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:21,237 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:21,238 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:22,326 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:22,326 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:23,443 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:23,444 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:24,481 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:24,482 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:25,524 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:25,524 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:26,584 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:26,584 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:27,628 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:27,628 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:28,671 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:28,671 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:29,729 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:29,729 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:30,774 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:30,774 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:31,832 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:31,832 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:32,891 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:32,891 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:33,951 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:33,951 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:34,998 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:34,998 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:36,043 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:36,044 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:37,087 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:37,088 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:38,134 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:38,134 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:39,180 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:39,182 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:40,217 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:40,217 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:41,281 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:41,281 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:42,323 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:42,323 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:43,368 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:43,368 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:44,404 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:44,404 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:45,457 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:45,457 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:46,498 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:46,498 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:47,538 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:47,538 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:48,573 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:48,573 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:49,611 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:49,611 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:50,649 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:50,649 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:51,690 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:51,690 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:52,726 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:52,726 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:53,764 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:53,764 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:54,816 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:54,816 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:55,864 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:55,864 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:56,922 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:56,922 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:57,967 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:57,967 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:47:59,006 - [DEBUG] Rotator raw status: 
+2025-04-03 15:47:59,006 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:00,059 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:00,059 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:01,099 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:01,099 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:02,160 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:02,160 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:03,203 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:03,203 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:04,241 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:04,242 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:05,284 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:05,284 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:06,330 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:06,330 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:07,400 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:07,400 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:08,441 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:08,441 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:09,478 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:09,478 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:10,510 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:10,510 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:11,546 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:11,546 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:12,587 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:12,587 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:13,628 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:13,628 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:14,679 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:14,680 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:15,731 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:15,731 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:16,803 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:16,803 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:17,863 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:17,864 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:18,901 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:18,901 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:19,959 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:19,959 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:20,998 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:20,998 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:22,040 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:22,040 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:23,082 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:23,082 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:24,131 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:24,131 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:25,170 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:25,171 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:26,215 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:26,215 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:27,260 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:27,260 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:28,296 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:28,296 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:29,358 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:29,358 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:30,414 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:30,414 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:31,457 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:31,457 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:32,500 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:32,500 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:33,544 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:33,544 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:34,589 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:34,590 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:35,635 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:35,636 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:36,679 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:36,680 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:37,720 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:37,720 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:38,777 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:38,777 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:39,817 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:39,818 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:40,879 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:40,879 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:41,933 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:41,933 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:42,975 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:42,975 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:44,018 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:44,018 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:45,062 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:45,062 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:46,105 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:46,105 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:47,164 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:47,165 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:48,222 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:48,222 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:49,276 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:49,277 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:50,368 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:50,369 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:51,425 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:51,425 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:52,473 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:52,473 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:53,515 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:53,515 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:54,561 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:54,561 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:55,601 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:55,602 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:56,641 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:56,641 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:57,681 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:57,681 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:58,740 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:58,740 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:48:59,786 - [DEBUG] Rotator raw status: 
+2025-04-03 15:48:59,786 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:00,827 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:00,827 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:01,868 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:01,868 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:02,910 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:02,910 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:03,954 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:03,954 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:04,997 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:04,997 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:06,036 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:06,036 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:07,079 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:07,079 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:08,119 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:08,119 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:09,162 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:09,162 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:10,207 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:10,207 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:11,251 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:11,251 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:12,294 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:12,294 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:13,333 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:13,333 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:14,378 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:14,378 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:15,425 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:15,425 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:16,469 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:16,469 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:17,519 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:17,519 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:18,598 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:18,598 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:19,640 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:19,640 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:20,700 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:20,700 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:21,732 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:21,732 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:22,791 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:22,791 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:23,852 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:23,852 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:24,909 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:24,909 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:25,969 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:25,970 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:27,012 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:27,012 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:28,051 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:28,051 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:29,092 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:29,092 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:30,134 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:30,134 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:31,167 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:31,167 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:32,219 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:32,219 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:33,285 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:33,286 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:34,342 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:34,342 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:35,399 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:35,399 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:36,443 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:36,444 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:37,485 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:37,485 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:38,531 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:38,531 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:39,577 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:39,577 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:40,617 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:40,617 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:41,656 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:41,656 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:42,701 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:42,702 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:43,738 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:43,738 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:44,783 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:44,783 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:45,822 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:45,823 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:46,862 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:46,862 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:47,904 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:47,904 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:49,013 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:49,014 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:50,055 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:50,055 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:51,096 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:51,096 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:52,137 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:52,137 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:53,177 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:53,177 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:54,237 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:54,237 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:55,298 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:55,298 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:49:56,351 - [DEBUG] Rotator raw status: 
+2025-04-03 15:49:56,351 - [ERROR] Unexpected rotator status format: 
+2025-04-03 15:50:04,455 - [ERROR] Cannot open serial port COM9: could not open port 'COM9': FileNotFoundError(2, 'The system cannot find the file specified.', None, 2)
+2025-04-03 16:23:53,350 - [INFO] Connected to serial port COM9
+2025-04-03 16:29:25,614 - [INFO] Connected to serial port COM9
+2025-04-03 16:29:30,827 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:29:30,828 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:29:35,942 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:29:35,942 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:29:41,085 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:29:41,086 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:29:46,226 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:29:46,226 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:29:50,792 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:29:50,792 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:29:55,912 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:29:55,912 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:30:00,996 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:30:00,997 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:30:06,080 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:30:06,080 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:30:34,161 - [INFO] Connected to serial port COM9
+2025-04-03 16:30:36,209 - [ERROR] Error reading/parsing serial: 'utf-8' codec can't decode byte 0x91 in position 21: invalid start byte
+2025-04-03 16:30:39,349 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:30:39,349 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:30:44,470 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:30:44,471 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:30:49,565 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:30:49,566 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:30:54,674 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:30:54,674 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:30:59,837 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:30:59,837 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:31:04,338 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:31:04,339 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:31:09,437 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:31:09,437 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:31:14,557 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:31:14,557 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:31:19,667 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:31:19,667 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:31:24,792 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:31:24,792 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:31:29,345 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:31:29,345 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:31:34,438 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:31:34,438 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:31:39,539 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:31:39,540 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:31:44,649 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:31:44,650 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:31:49,769 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:31:49,769 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:31:54,363 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:31:54,363 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:31:59,486 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:31:59,487 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:32:04,589 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:32:04,590 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:32:09,749 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:32:09,750 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:32:14,352 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:32:14,352 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:32:19,496 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:32:19,496 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:32:24,623 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:32:24,625 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:32:29,757 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:32:29,757 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:32:34,329 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:32:34,329 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:32:39,442 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:32:39,442 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:32:44,546 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:32:44,547 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:32:49,701 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:32:49,702 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:32:54,821 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:32:54,822 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:32:59,344 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:32:59,344 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:33:04,462 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:33:04,463 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:33:09,579 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:33:09,579 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:33:14,708 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:33:14,710 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:33:19,921 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:33:19,925 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:33:24,345 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:33:24,346 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
+2025-04-03 16:33:29,469 - Rotator commanded to Az: 356.9338276895837, El: -17.493099836013013
+2025-04-03 16:33:29,470 - [INFO] Updated rotation to Az: 356.93°, El: -17.49°
+2025-04-03 16:33:35,258 - Rotator commanded to Az: 353.06813220419457, El: -15.551369365760598
+2025-04-03 16:33:35,260 - [INFO] Updated rotation to Az: 353.07°, El: -15.55°
+2025-04-03 16:33:39,421 - Rotator commanded to Az: 357.72533667293646, El: -18.003926490344163
+2025-04-03 16:33:39,422 - [INFO] Updated rotation to Az: 357.73°, El: -18.00°
+2025-04-03 16:33:44,556 - Rotator commanded to Az: 357.56049369716726, El: -17.42998950433403
+2025-04-03 16:33:44,556 - [INFO] Updated rotation to Az: 357.56°, El: -17.43°
+2025-04-03 16:33:49,663 - Rotator commanded to Az: 352.2310230776506, El: -13.077340819286189
+2025-04-03 16:33:49,664 - [INFO] Updated rotation to Az: 352.23°, El: -13.08°
+2025-04-03 16:33:54,758 - Rotator commanded to Az: 356.8307605653035, El: -13.90536509576432
+2025-04-03 16:33:54,760 - [INFO] Updated rotation to Az: 356.83°, El: -13.91°
