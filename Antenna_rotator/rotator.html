@@ -1,41 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Rotator Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rotator Control</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; margin: 0; padding: 0; text-align: center; }
-    .container { max-width: 400px; margin: 100px auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    h1 { margin-bottom: 20px; }
-    .status { font-size: 20px; font-weight: bold; margin-top: 20px; padding: 15px; background: #eaeaea; border-radius: 5px; }
-    .connected { color: green; }
-    .disconnected { color: red; }
+    body { font-family: Arial, sans-serif; background: #f9f9f9; text-align: center; margin: 0; padding: 20px; }
+    .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    h1, h2 { margin-bottom: 15px; }
+    .status-box { padding: 15px; margin: 10px 0; border-radius: 5px; background: #eaeaea; }
+    .connected { color: green; font-weight: bold; }
+    .disconnected { color: red; font-weight: bold; }
+    input { width: 80%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
+    button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    
+    /* New box for "Command Sent" */
+    .command-sent-box {
+      display: none;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      background: #d4edda;
+      color: green;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Rotator Position</h1>
+    <h1>Rotator Control</h1>
     <p id="connectionStatus" class="disconnected">Disconnected</p>
-    <div class="status">
+
+    <!-- Automatic Updates Section -->
+    <div class="status-box">
+      <h2>Automatic Tracking</h2>
       <p>Azimuth: <span id="azimuth">--</span>°</p>
       <p>Elevation: <span id="elevation">--</span>°</p>
     </div>
+
+    <!-- Manual Control Section -->
+    <div class="status-box">
+      <h2>Manual Control</h2>
+      <input type="number" id="azimuthInput" placeholder="Azimuth (0-360)" min="0" max="360">
+      <input type="number" id="elevationInput" placeholder="Elevation (-90-90)" min="-90" max="90">
+      <button onclick="sendRotation()">Rotate</button>
+    </div>
+
+    <!-- Command Sent Message Box -->
+    <div id="commandSentBox" class="command-sent-box">Command Sent</div>
   </div>
 
-  <!-- Include Socket.IO Client Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
   <script>
-    const serverURL = 'http://localhost:5053';
-    const socket = io(serverURL, { transports: ['websocket', 'polling'], reconnection: true, reconnectionAttempts: 5, reconnectionDelay: 3000 });
+    const socket = io('http://localhost:5053', { transports: ['websocket'], reconnection: true });
 
+    // Update UI function to reflect new azimuth and elevation
     function updateUI(data) {
-      if (!isNaN(data.azimuth) && !isNaN(data.elevation)) {
-        document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
-        document.getElementById('elevation').textContent = data.elevation.toFixed(2);
-      }
+      document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
+      document.getElementById('elevation').textContent = data.elevation.toFixed(2);
     }
 
-    // Handle connection status
+    // Show the "Command Sent" message for 3 seconds
+    function showCommandSentMessage() {
+      const commandSentBox = document.getElementById('commandSentBox');
+      commandSentBox.style.display = 'block';  // Show the message
+      setTimeout(() => {
+        commandSentBox.style.display = 'none';  // Hide after 3 seconds
+      }, 3000);
+    }
+
+    // Send rotation request to backend
+    function sendRotation() {
+        const azimuth = parseFloat(document.getElementById('azimuthInput').value);
+        const elevation = parseFloat(document.getElementById('elevationInput').value);
+
+        if (isNaN(azimuth) || isNaN(elevation) || azimuth < 0 || azimuth > 360 || elevation < -90 || elevation > 90) {
+            alert("Enter valid azimuth (0-360) and elevation (-90-90).");
+            return;
+        }
+
+        fetch('http://localhost:5053/rotate', {  // ✅ Updated to full URL
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ azimuth, elevation })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Rotation failed');
+            return response.json();
+        })
+        .then(data => {
+            console.log("Success:", data);
+            showCommandSentMessage();  // Show the "Command Sent" message
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Failed to send rotation. Check if Flask server is running.");
+        });
+    }
+
     socket.on('connect', () => {
       document.getElementById('connectionStatus').textContent = 'Connected';
       document.getElementById('connectionStatus').className = 'connected';
@@ -46,9 +109,8 @@
       document.getElementById('connectionStatus').className = 'disconnected';
     });
 
-    // Handle real-time updates from backend
+    // Listen for real-time updates from backend
     socket.on('status_update', updateUI);
-    socket.on('rotation_update', updateUI);
   </script>
 </body>
 </html>

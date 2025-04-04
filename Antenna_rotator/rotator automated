@@ -1,4 +1,6 @@
 import eventlet
+
+# Monkey patching for async support
 eventlet.monkey_patch()
 
 from flask import Flask, request, jsonify
@@ -12,56 +14,51 @@ import serial
 import math
 
 # ======================== CONFIGURATION ========================
-SERIAL_PORT = 'COM9'  # Adjust to your telemetry device port
+SERIAL_PORT = 'COM9'
 SERIAL_BAUDRATE = 115200
 
-ROTATOR_MODEL = '603'          # Yaesu G5500 rotator model number
-ROTATOR_PORT = '/dev/ttyUSB0'  # Adjust as necessary
+ROTATOR_MODEL = '603'
+ROTATOR_PORT = '/dev/ttyUSB0'
 
 WEB_SOCKET_PORT = 5053
 
-# Ground station (Fixed Reference Point)
 LAT_S = 42.02698670969771
 LON_S = -93.6535530849385
 ALT_S = 0.279  # in km
 
-# WGS-84 Ellipsoid Constants
-A = 6378.137  # km (semi-major axis)
-B = 6356.752  # km (semi-minor axis)
-E2 = 1 - (B**2 / A**2)  # Square of eccentricity
+A = 6378.137
+B = 6356.752
+E2 = 1 - (B**2 / A**2)
 
 # ======================== FLASK & SOCKETIO SETUP ========================
 app = Flask(__name__)
 CORS(app)
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="eventlet")
 
-# ======================== LOGGING SETUP ========================
-logging.basicConfig(filename='rotator.log', level=logging.INFO,
-                    format='%(asctime)s - %(message)s')
+logging.basicConfig(filename='rotator.log', level=logging.INFO, format='%(asctime)s - %(message)s')
 
-# Shared variable for azimuth & elevation
 latest_rotation = {"azimuth": 0, "elevation": 0}
+latest_data = {}
+data_lock = threading.Lock()
 
-# ======================== ROTATOR CONTROL FUNCTIONS ========================
+# ======================== UTILITY FUNCTIONS ========================
 def execute_rotctl_command(command):
-    """Executes a rotctl command and returns the output."""
     try:
-        full_cmd = f"rotctl -m {ROTATOR_MODEL} -r {ROTATOR_PORT} {command}"
-        result = subprocess.run(full_cmd, shell=True, capture_output=True, text=True)
+        result = subprocess.run(
+            f"rotctl -m {ROTATOR_MODEL} -r {ROTATOR_PORT} {command}",
+            shell=True, capture_output=True, text=True
+        )
         return result.stdout.strip()
     except Exception as e:
-        logging.error(f"[ERROR] rotctl command failed: {e}")
+        logging.error(f"rotctl command failed: {e}")
         return None
 
 def update_rotator(azimuth, elevation):
-    """Sends azimuth and elevation commands to the rotator."""
     if azimuth is not None and elevation is not None:
         execute_rotctl_command(f'P {azimuth} {elevation}')
         logging.info(f"Rotator commanded to Az: {azimuth}, El: {elevation}")
 
-# ======================== LLA TO ECEF & AZIMUTH/ELEVATION CALCULATIONS ========================
 def lla_to_ecef(lat, lon, alt):
-    """Converts Latitude, Longitude, Altitude (LLA) to Earth-Centered Earth-Fixed (ECEF)."""
     lat, lon = math.radians(lat), math.radians(lon)
     N = A / math.sqrt(1 - E2 * math.sin(lat)**2)
     X = (N + alt) * math.cos(lat) * math.cos(lon)
@@ -70,7 +67,6 @@ def lla_to_ecef(lat, lon, alt):
     return X, Y, Z
 
 def ecef_to_enu(V, lat_s, lon_s):
-    """Converts ECEF vector to East-North-Up (ENU) coordinates."""
     lat_s, lon_s = math.radians(lat_s), math.radians(lon_s)
     R = [
         [-math.sin(lon_s), math.cos(lon_s), 0],
@@ -80,133 +76,111 @@ def ecef_to_enu(V, lat_s, lon_s):
     return [sum(R[i][j] * V[j] for j in range(3)) for i in range(3)]
 
 def compute_az_el(lat_t, lon_t, alt_t):
-    """Computes azimuth and elevation angles for pointing the rotator."""
-    alt_t /= 1000  # Convert altitude to km
-
-    # Compute ECEF coordinates
+    alt_t /= 1000
     Xs, Ys, Zs = lla_to_ecef(LAT_S, LON_S, ALT_S)
     Xt, Yt, Zt = lla_to_ecef(lat_t, lon_t, alt_t)
-
-    # Compute line-of-sight (LOS) vector
     V = [Xt - Xs, Yt - Ys, Zt - Zs]
-
-    # Convert LOS to ENU coordinates
     ENU = ecef_to_enu(V, LAT_S, LON_S)
-
-    # Compute azimuth
     az = math.degrees(math.atan2(ENU[0], ENU[1]))
     if az < 0:
-        az += 360  # Normalize azimuth
-
-    # Compute elevation
+        az += 360
     el = math.degrees(math.atan2(ENU[2], math.sqrt(ENU[0]**2 + ENU[1]**2)))
-
     return az, el
 
-latest_data = {
-    "time": None,
-    "lat": None,
-    "lon": None,
-    "alt": None,
-    "vx": None,
-    "vy": None,
-    "vz": None,
-    "temperature": None,
-    "pressure": None,
-    "humidity": None,
-    "other": None
-}
-data_lock = threading.Lock()
-# ======================== SERIAL READING THREAD ========================
+# ======================== SERIAL READER ========================
 def serial_reader():
-    """Reads telemetry data from the serial port and updates the rotator."""
-    global latest_data
-
+    global latest_rotation
     try:
         ser = serial.Serial(SERIAL_PORT, SERIAL_BAUDRATE, timeout=1)
-        print(f"[INFO] Connected to serial port {SERIAL_PORT}")
-        logging.info(f"[INFO] Connected to serial port {SERIAL_PORT}")
+        logging.info(f"Connected to serial port {SERIAL_PORT}")
     except Exception as e:
-        logging.error(f"[ERROR] Cannot open serial port {SERIAL_PORT}: {e}")
+        logging.error(f"Cannot open serial port {SERIAL_PORT}: {e}")
         return
 
     while True:
         try:
             line = ser.readline().decode('utf-8').strip()
             if line.startswith('$$HAR'):
-                print(f"[DEBUG] Raw line: {line}")
                 parts = line.split(',')
-
-                if len(parts) >= 11:  # Ensure proper length
+                if len(parts) >= 11:
                     with data_lock:
-                        latest_data = {
-                            "time": parts[1].strip(),
-                            "lat": parts[2].strip(),
-                            "lon": parts[3].strip(),
-                            "alt": parts[4].strip(),
-                            "vx": parts[5].strip(),
-                            "vy": parts[6].strip(),
-                            "vz": parts[7].strip(),
-                            "temperature": parts[8].strip(),
-                            "pressure": parts[9].strip(),
-                            "humidity": parts[10].strip(),
-                            "other": parts[11].strip() if len(parts) > 11 else None
-                        }
+                        latest_data.update({
+                            "time": parts[1],
+                            "lat": parts[2],
+                            "lon": parts[3],
+                            "alt": parts[4],
+                            "vx": parts[5],
+                            "vy": parts[6],
+                            "vz": parts[7],
+                            "temperature": parts[8],
+                            "pressure": parts[9],
+                            "humidity": parts[10],
+                            "other": parts[11] if len(parts) > 11 else None
+                        })
+
                     try:
-                        lat_t, lon_t, alt_t = float(parts[2]), float(parts[3]), float(parts[4])
-
-                        # Compute azimuth & elevation
+                        lat_t = float(parts[2])
+                        lon_t = float(parts[3])
+                        alt_t = float(parts[4])
                         az, el = compute_az_el(lat_t, lon_t, alt_t)
-                        print(f"[DEBUG] Azimuth: {az:.2f}°, Elevation: {el:.2f}°")
-                        # Update shared variable
                         latest_rotation = {"azimuth": az, "elevation": el}
-
-                        # Send command to rotator
                         update_rotator(az, el)
-
-                        # Emit data to WebSocket clients
                         socketio.emit('status_update', latest_rotation)
-
-                        logging.info(f"[INFO] Updated rotation to Az: {az:.2f}°, El: {el:.2f}°")
                     except ValueError:
-                        logging.warning(f"[WARNING] Invalid telemetry data: {parts}")
-
-            time.sleep(0.5)
-
+                        logging.warning("Invalid telemetry data")
         except Exception as e:
-            logging.error(f"[ERROR] Error reading/parsing serial: {e}")
+            logging.error(f"Error reading serial: {e}")
 
-# ======================== ROTATOR STATUS THREAD ========================
+        time.sleep(0.5)
+
+# ======================== ROTATOR STATUS ========================
 def rotator_status_thread():
-    """Background task to emit real-time rotator status."""
     while True:
         try:
             status = execute_rotctl_command('p')
             if status:
-                lines = status.strip().splitlines()
+                lines = status.splitlines()
                 if len(lines) >= 2:
-                    az, el = float(lines[0]), float(lines[1])
+                    az = float(lines[0])
+                    el = float(lines[1])
                     socketio.emit('status_update', {"azimuth": az, "elevation": el})
-                    logging.info(f"[INFO] Status Update → Az: {az:.2f}°, El: {el:.2f}°")
-                else:
-                    logging.warning(f"[WARNING] Unexpected rotator status format: {status}")
-
         except Exception as e:
-            logging.error(f"[ERROR] Error retrieving rotator status: {e}")
+            logging.error(f"Error retrieving rotator status: {e}")
+        time.sleep(1)
 
-        time.sleep(1)  # Emit every second
+# ======================== ROUTES ========================
+@app.route('/rotate', methods=['POST'])
+def rotate():
+    """Manually update azimuth & elevation."""
+    data = request.get_json()
 
+    try:
+        azimuth = float(data.get('azimuth', -1))
+        elevation = float(data.get('elevation', -1))
+
+        # Validate range (adjust if needed)
+        if not (0 <= azimuth <= 360):
+            return jsonify({"error": "Azimuth must be between 0 and 360"}), 400
+        if not (0 <= elevation <= 90):
+            return jsonify({"error": "Elevation must be between 0 and 90"}), 400
+
+        # Run in background to avoid blocking request
+        threading.Thread(target=update_rotator, args=(azimuth, elevation)).start()
+
+        # Emit updated rotation to all connected clients
+        socketio.emit('status_update', {"azimuth": azimuth, "elevation": elevation})
+
+        return jsonify({"status": "command sent", "azimuth": azimuth, "elevation": elevation})
+
+    except ValueError:
+        return jsonify({"error": "Invalid input, azimuth and elevation must be numbers"}), 400
 
 @socketio.on('connect')
-def handle_connect():
-    """Handle new WebSocket connections."""
+def on_connect():
     emit('connection', {'status': 'connected'})
 
-# ======================== MAIN EXECUTION ========================
+# ======================== MAIN ========================
 if __name__ == '__main__':
-    # Start serial reader and rotator status threads
     threading.Thread(target=serial_reader, daemon=True).start()
     socketio.start_background_task(rotator_status_thread)
-
-    # Start WebSocket Server
     socketio.run(app, host='0.0.0.0', port=WEB_SOCKET_PORT)
