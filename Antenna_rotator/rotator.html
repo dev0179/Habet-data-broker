@@ -2,114 +2,139 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotator Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    body { font-family: Arial, sans-serif; background: #f9f9f9; text-align: center; margin: 0; padding: 20px; }
-    .container { max-width: 400px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; margin: 0; padding: 20px; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
     h1, h2 { margin-bottom: 15px; }
     .status-box { padding: 15px; margin: 10px 0; border-radius: 5px; background: #eaeaea; }
     .connected { color: green; font-weight: bold; }
-    .disconnected { color: red; font-weight: bold; }
+    .disconnected, .not-found { color: red; font-weight: bold; }
     input { width: 80%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
     button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
     button:hover { background: #0056b3; }
-    
-    /* New box for "Command Sent" */
-    .command-sent-box {
-      display: none;
-      padding: 15px;
-      margin: 10px 0;
-      border-radius: 5px;
-      background: #d4edda;
-      color: green;
-      font-weight: bold;
-    }
+    .command-sent-box { display: none; padding: 15px; margin: 10px 0; border-radius: 5px; background: #d4edda; color: green; font-weight: bold; }
+    #map { height: 300px; width: 100%; margin-top: 10px; border-radius: 5px; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Rotator Control</h1>
-    <p id="connectionStatus" class="disconnected">Disconnected</p>
+    <p id="connectionStatus" class="disconnected">Disconnected from WebSocket</p>
+    <p id="rotatorStatus" class="not-found">Rotator Status: Not connected</p>
 
-    <!-- Automatic Updates Section -->
     <div class="status-box">
       <h2>Automatic Tracking</h2>
       <p>Azimuth: <span id="azimuth">--</span>°</p>
       <p>Elevation: <span id="elevation">--</span>°</p>
     </div>
 
-    <!-- Manual Control Section -->
     <div class="status-box">
       <h2>Manual Control</h2>
       <input type="number" id="azimuthInput" placeholder="Azimuth (0-360)" min="0" max="360">
-      <input type="number" id="elevationInput" placeholder="Elevation (-90-90)" min="-90" max="90">
+      <input type="number" id="elevationInput" placeholder="Elevation (0-90)" min="0" max="90">
       <button onclick="sendRotation()">Rotate</button>
     </div>
 
-    <!-- Command Sent Message Box -->
     <div id="commandSentBox" class="command-sent-box">Command Sent</div>
+
+    <div class="status-box">
+      <h2>Live Location Map</h2>
+      <div id="map"></div>
+    </div>
   </div>
 
+  <!-- Scripts -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const socket = io('http://localhost:5053', { transports: ['websocket'], reconnection: true });
+    const SERVER_IP = 'http://localhost:5053';
+    const socket = io(SERVER_IP, { transports: ['websocket'], reconnection: true });
 
-    // Update UI function to reflect new azimuth and elevation
+    // Leaflet map init
+    const map = L.map('map').setView([42.027, -93.654], 13);
+    const pathCoords = [];
+    const pathLine = L.polyline(pathCoords, { color: 'blue' }).addTo(map);
+
+    const balloonIcon = L.icon({
+      iconUrl: 'https://cdn-icons-png.flaticon.com/512/1319/1319945.png',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16]
+    });
+
+    const marker = L.marker([42.027, -93.654], { icon: balloonIcon }).addTo(map);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '© OpenStreetMap'
+    }).addTo(map);
+
     function updateUI(data) {
-      document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
-      document.getElementById('elevation').textContent = data.elevation.toFixed(2);
-    }
+      const serialConnected = data['serial connected'];
 
-    // Show the "Command Sent" message for 3 seconds
-    function showCommandSentMessage() {
-      const commandSentBox = document.getElementById('commandSentBox');
-      commandSentBox.style.display = 'block';  // Show the message
-      setTimeout(() => {
-        commandSentBox.style.display = 'none';  // Hide after 3 seconds
-      }, 3000);
-    }
+      if (serialConnected) {
+        document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
+        document.getElementById('elevation').textContent = data.elevation.toFixed(2);
+        document.getElementById('rotatorStatus').textContent = "Rotator Status: Connected";
+        document.getElementById('rotatorStatus').className = "connected";
 
-    // Send rotation request to backend
-    function sendRotation() {
-        const azimuth = parseFloat(document.getElementById('azimuthInput').value);
-        const elevation = parseFloat(document.getElementById('elevationInput').value);
+        if (data.lat && data.lon) {
+          const lat = parseFloat(data.lat);
+          const lon = parseFloat(data.lon);
 
-        if (isNaN(azimuth) || isNaN(elevation) || azimuth < 0 || azimuth > 360 || elevation < -90 || elevation > 90) {
-            alert("Enter valid azimuth (0-360) and elevation (-90-90).");
-            return;
+          marker.setLatLng([lat, lon]);
+          pathCoords.push([lat, lon]);
+          pathLine.setLatLngs(pathCoords);
+          map.setView([lat, lon]);
         }
+      } else {
+        document.getElementById('rotatorStatus').textContent = "Rotator Status: Not connected";
+        document.getElementById('rotatorStatus').className = "not-found";
+        document.getElementById('azimuth').textContent = "--";
+        document.getElementById('elevation').textContent = "--";
+      }
+    }
 
-        fetch('http://localhost:5053/rotate', {  // ✅ Updated to full URL
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ azimuth, elevation })
-        })
-        .then(response => {
-            if (!response.ok) throw new Error('Rotation failed');
-            return response.json();
-        })
-        .then(data => {
-            console.log("Success:", data);
-            showCommandSentMessage();  // Show the "Command Sent" message
-        })
-        .catch(error => {
-            console.error("Error:", error);
-            alert("Failed to send rotation. Check if Flask server is running.");
-        });
+    function showCommandSentMessage() {
+      const box = document.getElementById('commandSentBox');
+      box.style.display = 'block';
+      setTimeout(() => box.style.display = 'none', 3000);
+    }
+
+    function sendRotation() {
+      const azimuth = parseFloat(document.getElementById('azimuthInput').value);
+      const elevation = parseFloat(document.getElementById('elevationInput').value);
+
+      if (isNaN(azimuth) || isNaN(elevation) || azimuth < 0 || azimuth > 360 || elevation < 0 || elevation > 90) {
+        alert("Enter valid azimuth (0-360) and elevation (0-90).")
+        return;
+      }
+
+      fetch(`${SERVER_IP}/rotate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ azimuth, elevation })
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === "command sent") showCommandSentMessage();
+        else alert("Rotation failed");
+      })
+      .catch(() => alert("Failed to send rotation. Check connection."));
     }
 
     socket.on('connect', () => {
-      document.getElementById('connectionStatus').textContent = 'Connected';
+      document.getElementById('connectionStatus').textContent = 'Connected to WebSocket';
       document.getElementById('connectionStatus').className = 'connected';
     });
 
     socket.on('disconnect', () => {
-      document.getElementById('connectionStatus').textContent = 'Disconnected';
+      document.getElementById('connectionStatus').textContent = 'Disconnected from WebSocket';
       document.getElementById('connectionStatus').className = 'disconnected';
     });
 
-    // Listen for real-time updates from backend
     socket.on('status_update', updateUI);
   </script>
 </body>
