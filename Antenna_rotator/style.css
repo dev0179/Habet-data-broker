@@ -1,16 +1,16 @@
 /* Base Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #181818; /* Darker base for more of a mission control feel */
+    background: #f4f4f4;
     margin: 0;
     padding: 20px;
     transition: background 0.3s, color 0.3s;
-    color: #ddd;
+    color: #222;
 }
 
 body.dark {
-    background-color: #0d1117;  /* Darker theme for mission control */
-    color: #eaeaea;
+    background-color: #1e1e1e;
+    color: #f5f5f5;
 }
 
 /* Top section layout */
@@ -21,48 +21,29 @@ body.dark {
     gap: 40px;
     margin-top: 80px;
     flex-wrap: wrap;
-    z-index: 10;
 }
 
 /* Coordinate Box */
-/* Coordinate Box (Fixed size) */
-/* Coordinate Box (Fixed size, large text) */
 .coordinate-box {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 60px; /* Set fixed height */
     background: #0d1117;
     color: #00ffcc;
-    padding: 0 0px; /* Remove top/bottom padding */
+    padding: 20px 0px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 18px; /* Fixed large font size */
+    font-size: 14px;
     box-shadow: 0 4px 12px rgba(0, 255, 204, 0.1);
-    border-bottom: 2px solid #00ffcc; /* Border for emphasis */
+    border-bottom: 1px solid #00ffcc;
     z-index: 1000;
-    overflow: hidden; /* Prevent overflow from content */
 }
-
-/* Adjustments for smaller screens */
-@media screen and (max-width: 768px) {
-    .coordinate-box {
-        font-size: 18px; /* Keep font size large on small screens */
-        padding: 0 10px; /* Reduce padding */
-        height: 60px; /* Maintain the same height */
-    }
-
-    .coordinate-box .data-line {
-        margin: 0 10px; /* Reduced margin for smaller screens */
-    }
-}
-
 
 .coordinate-box .data-line {
-    margin: 0 10px;
+    margin: 0 20px;
     white-space: nowrap;
 }
 
@@ -71,72 +52,82 @@ body.dark {
     font-weight: bold;
 }
 
+/* Adjust font size and padding for smaller screens */
+@media screen and (max-width: 768px) {
+    .coordinate-box {
+        padding: 5px 16px;
+        font-size: 12px;
+    }
+
+    .coordinate-box .data-line {
+        margin: 0 10px;
+    }
+}
+
+body.dark .coordinate-box {
+    background-color: #0d1117;
+    color: #00ffcc;
+    border-bottom: 1px solid #00ffcc;
+    box-shadow: 0 4px 12px rgba(0, 255, 204, 0.1);
+}
+
 /* Rotator Control Box */
 .rotator-box {
     width: 600px;
-    background: #1d1f21; /* Dark box for control panel */
+    background: #ffffff;
     padding: 25px;
     text-align: center;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     transition: background 0.3s;
-    color: #fff;
 }
 
 body.dark .rotator-box {
-    background-color: #2e2e2e;  /* Slightly lighter for distinction in dark mode */
+    background-color: #2e2e2e;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
 }
 
 .rotator-box h1 {
     margin-top: 0;
-    font-size: 24px;
-    color: #00ffcc;
 }
 
 /* Status Text Styling */
-.connected { 
-    color: #00ff00; 
-    font-weight: bold;
-}
-.disconnected, .not-found { 
-    color: #ff0033; 
-    font-weight: bold;
-}
+.connected { color: green; font-weight: bold; }
+.disconnected, .not-found { color: rgb(224, 16, 16); font-weight: bold; }
 
 /* Sub-panels in Rotator Box */
 .status-box {
     margin-top: 20px;
     padding: 15px;
-    background-color: #262626;
+    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
 body.dark .status-box {
-    background-color: #444444; /* Darker status box in dark mode */
+    background-color: #3a3a3a;
 }
 
 /* Input fields and buttons */
 input {
     width: 90%;
-    padding: 12px;
-    margin: 12px 0;
+    padding: 10px;
+    margin: 10px 0;
     text-align: center;
-    border: 1px solid #666;
+    border: 1px solid #ccc;
     border-radius: 20px;
-    font-size: 16px;
-    background-color: #222;
-    color: #fff;
+    font-size: 14px;
+    background-color: #fff;
 }
 
-input:focus {
-    outline: none;
-    border-color: #00ffcc; /* Neon focus effect */
+body.dark input {
+    background-color: #444;
+    color: white;
+    border: 1px solid #666;
 }
 
-/* Buttons */
 button {
-    padding: 12px 45px;
+    padding: 10px 45px;
     border: none;
     border-radius: 40px;
     margin-top: 10px;    
@@ -144,28 +135,22 @@ button {
     color: white;
     cursor: pointer;
     font-weight: bold;
-    transition: background 0.3s, transform 0.2s ease;
+    transition: background 0.2s ease;
 }
 
 button:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-button:active {
-    transform: scale(0.98);
 }
 
 /* Command Sent Notification */
 .command-sent-box {
     margin-top: 15px;
     padding: 10px;
-    background-color: #00ff00;
-    color: #003300;
+    background-color: #d1ffd1;
+    color: #006600;
     border-radius: 6px;
     display: none;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 255, 0, 0.5);
 }
 
 /* Graph Section */
@@ -173,121 +158,80 @@ button:active {
     width: 100%;
     max-width: 1200px;
     margin: 80px auto 40px;
-    background-color: #1d1d1d;
+    background-color: #fff;
     border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
     padding: 40px;
-    text-align: center;
     transition: background 0.3s, color 0.3s;
 }
 
 body.dark .graph-section {
     background-color: #2a2a2a;
+    color: #f5f5f5;
 }
 
-/* Dropdowns & Button */
+/* Dropdowns & Create Button */
 .graph-section select,
 .graph-section button {
-    margin: 20px 10px 20px 0;
-    width: 250px;  /* Set consistent width */
-    padding: 12px;
-    margin: 10px auto 20px;
+    margin: 10px 10px 20px 0;
+    padding: 8px 12px;
     border-radius: 6px;
-    font-size: 16px;
-    background-color: #333;
-    color: white;
+    font-size: 14px;
 }
 
 .graph-section button {
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s ease;
+    transition: background-color 0.2s;
 }
 
 .graph-section button:hover {
     background-color: #0056b3;
-    transform: scale(1.05);
-}
-
-.graph-section button:active {
-    transform: scale(0.98);
 }
 
 /* Custom Graph Container */
 .custom-graph-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);  /* Two columns for each box */
+    display: flex;
+    flex-wrap: wrap;
     gap: 30px;
-    justify-content: center;  /* Center the container */
+    justify-content: space-between;
 }
 
 /* Custom Graph Boxes */
 .custom-graph-container > div {
-    background: #333;
+    flex: 1 1 48%;
+    min-width: 500px;
+    height: 400px;
+    background: #f9f9f9;
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    transition: background 0.3s, transform 0.3s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    transition: background 0.3s;
+    box-sizing: border-box;
 }
 
 body.dark .custom-graph-container > div {
-    background: #444444;
-}
-
-.custom-graph-container > div:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(0, 255, 204, 0.2);
+    background: #3a3a3a;
+    color: #f5f5f5;
 }
 
 /* Toggle Button */
 .toggle-mode {
     position: fixed;
-    top: 70px;
+    top: 50px;
     right: 5px;
-    padding: 12px 16px;
+    padding: 10px 16px;
     background: #555;
     color: white;
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     z-index: 1000;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
 .toggle-mode:hover {
-    background-color: #00ffcc;
-    transform: scale(1.1);
-}
-
-.toggle-mode:active {
-    transform: scale(0.95);
-}
-
-/* Map Container */
-.map-container {
-    width: 50%;
-    height: 500px;
-    background-color: #333;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
-}
-
-body.dark .map-container {
-    background-color: #444;
-}
-
-@media (max-width: 768px) {
-    .top-section {
-        flex-direction: column;
-        align-items: center;
-    }
-    .map-container {
-        width: 100%;
-        margin-top: 20px;
-    }
+    background-color: #0056b3;
 }
