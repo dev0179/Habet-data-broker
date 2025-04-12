@@ -88,55 +88,7 @@ socket.on('disconnect', () => {
   document.getElementById('connectionStatus').className = 'disconnected';
 });
 
-let map;
-let balloonPath = [];
-
-// Initialize the map
-function initMap(lat, lon) {
-  map = L.map('map').setView([lat, lon], 13);  // Initial position based on lat/lon
-
-  // Set the map tiles (OpenStreetMap)
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  // Create a marker for the initial position
-  let marker = L.marker([lat, lon]).addTo(map);
-  marker.bindPopup("Balloon Position").openPopup();
-
-  // Store the path of the balloon
-  balloonPath.push([lat, lon]);
-  L.polyline(balloonPath, { color: 'blue' }).addTo(map);
-}
-
-// Update the map with new position from WebSocket data
-function updateMapPosition(data) {
-  const lat = parseFloat(data.lat);
-  const lon = parseFloat(data.lon);
-
-  if (!isNaN(lat) && !isNaN(lon)) {
-    // If map is not initialized, initialize it
-    if (!map) {
-      initMap(lat, lon);
-    } else {
-      // Update the map view and marker position
-      map.setView([lat, lon], 13);
-      const marker = L.marker([lat, lon]).addTo(map);
-      marker.bindPopup("Balloon Position").openPopup();
-
-      // Store and display the balloon's path
-      balloonPath.push([lat, lon]);
-      L.polyline(balloonPath, { color: 'blue' }).addTo(map);
-    }
-  }
-}
-
-// WebSocket handling for position updates
-socket.on('status_update', (data) => {
-  updateUI(data);
-  updateMapPosition(data);  // Update map with the latest position
-});
-
+socket.on('status_update', updateUI);
 
 function createGraph() {
   const xKey = document.getElementById('xSelect').value;
