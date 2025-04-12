@@ -25,6 +25,7 @@ function updateUI(data) {
   }
 
   updateManualUI(manualControl);
+
 }
 
 function sendRotation() {
@@ -88,64 +89,54 @@ socket.on('disconnect', () => {
   document.getElementById('connectionStatus').className = 'disconnected';
 });
 
-socket.on('status_update', updateUI);
+let map;
+let balloonPath = [];
 
-function createGraph() {
-  const xKey = document.getElementById('xSelect').value;
-  const yKey = document.getElementById('ySelect').value;
+// Initialize the map
+function initMap(lat, lon) {
+  map = L.map('map').setView([lat, lon], 13);  // Initial position based on lat/lon
 
-  const container = document.createElement('div');
-  container.classList.add('chart-container');
-  const canvas = document.createElement('canvas');
-  container.appendChild(canvas);
-  document.getElementById('customGraphs').appendChild(container);
+  // Set the map tiles (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-  const ctx = canvas.getContext('2d');
-  const newChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      datasets: [{
-        label: `${yKey} vs ${xKey}`,
-        data: [],
-        borderColor: getRandomColor(),
-        borderWidth: 2,
-        showLine: true
-      }]
-    },
-    options: {
-      animation: false,
-      responsive: true,
-      parsing: false,
-      scales: {
-        x: {
-          type: 'linear',
-          title: { display: true, text: xKey },
-          position: 'bottom'
-        },
-        y: {
-          type: 'linear',
-          title: { display: true, text: yKey }
-        }
-      }
+  // Create a marker for the initial position
+  let marker = L.marker([lat, lon]).addTo(map);
+  marker.bindPopup("Balloon Position").openPopup();
+
+  // Store the path of the balloon
+  balloonPath.push([lat, lon]);
+  L.polyline(balloonPath, { color: 'blue' }).addTo(map);
+}
+
+// Update the map with new position from WebSocket data
+function updateMapPosition(data) {
+  const lat = parseFloat(data.lat);
+  const lon = parseFloat(data.lon);
+
+  if (!isNaN(lat) && !isNaN(lon)) {
+    // If map is not initialized, initialize it
+    if (!map) {
+      initMap(lat, lon);
+    } else {
+      // Update the map view and marker position
+      map.setView([lat, lon], 13);
+      const marker = L.marker([lat, lon]).addTo(map);
+      marker.bindPopup("Balloon Position").openPopup();
+
+      // Store and display the balloon's path
+      balloonPath.push([lat, lon]);
+      L.polyline(balloonPath, { color: 'blue' }).addTo(map);
     }
-  });
-
-  customGraphs.push({ chart: newChart, xKey, yKey });
+  }
 }
 
-function updateCustomGraphs(data) {
-  customGraphs.forEach(({ chart, xKey, yKey }) => {
-    const xVal = parseFloat(data[xKey]);
-    const yVal = parseFloat(data[yKey]);
+// WebSocket handling for position updates
+socket.on('status_update', (data) => {
+  console.log(data);
+  updateUI(data);
+  updateMapPosition(data);  // Update map with the latest position
+});
 
-    if (!isNaN(xVal) && !isNaN(yVal)) {
-      chart.data.datasets[0].data.push({ x: xVal, y: yVal });
-      if (chart.data.datasets[0].data.length > 30) chart.data.datasets[0].data.shift();
-      chart.update();
-    }
-  });
-}
 
-function getRandomColor() {
-  return '#' + Array.from({ length: 6 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
-}

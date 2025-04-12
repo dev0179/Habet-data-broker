@@ -105,22 +105,30 @@ def compute_az_el(lat_t, lon_t, alt_t):
     el = math.degrees(math.atan2(ENU[2], math.sqrt(ENU[0]**2 + ENU[1]**2)))
     return az, el
 
-# ========== ROTATOR STATUS EMITTER ==========
+# Global variable to track the last update timestamp
+last_update_time = 0
+
+# ========== ROTATOR STATUS EMITTER ========== 
 def rotator_status_thread():
+    global last_update_time
     while True:
         try:
-            status = execute_rotctl_command('p')
-            if status:
-                lines = status.splitlines()
-                if len(lines) >= 2:
-                    az = float(lines[0])
-                    el = float(lines[1])
-                    data_sent.update({"azimuth": az, "elevation": el, "serial connected": serial_connected})
-                    socketio.emit('status_update', data_sent)
+            current_time = time.time()  # Get the current time in seconds
+            
+            # Emit status every 15 seconds
+            if current_time - last_update_time >= 15:
+                status = execute_rotctl_command('p')
+                if status:
+                    lines = status.splitlines()
+                    if len(lines) >= 2:
+                        az = float(lines[0])
+                        el = float(lines[1])
+                        data_sent.update({"azimuth": az, "elevation": el, "serial connected": serial_connected})
+                        socketio.emit('status_update', data_sent)
+                        last_update_time = current_time  # Update the last update time
         except Exception as e:
             logging.error(f"Status thread error: {e}")
         time.sleep(1)
-
 
 @app.route('/toggle_manual', methods=['POST'])
 def toggle_manual():
