@@ -1,33 +1,3 @@
-const ctx = document.getElementById('liveChart').getContext('2d');
-const liveChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Temperature (°C) vs Altitude (km)',
-      data: [],
-      borderColor: 'red',
-      borderWidth: 2,
-      showLine: true
-    }]
-  },
-  options: {
-    animation: false,
-    responsive: true,
-    parsing: false,
-    scales: {
-      x: {
-        type: 'linear',
-        position: 'bottom',
-        title: { display: true, text: 'Altitude (km)' }
-      },
-      y: {
-        type: 'linear',
-        title: { display: true, text: 'Temperature (°C)' }
-      }
-    }
-  }
-});
-
 const SERVER_IP = 'http://10.24.220.47:5053';
 const socket = io(SERVER_IP, { transports: ['websocket'], reconnection: true });
 
@@ -35,31 +5,6 @@ function updateUI(data) {
   const serialConnected = data['serial connected'];
   const manualControl = data['manual_control'];
 
-  const now = new Date().toLocaleTimeString();
-  const temperature = parseFloat(data.temperature);
-  const altitude = parseFloat(data.alt);
-
-  liveChart.data.datasets[0].data.push({ x: altitude, y: temperature });
-
-  if (liveChart.data.datasets[0].data.length > 30) {
-    liveChart.data.datasets[0].data.shift();
-  }
-
-  liveChart.update();
-  customGraphs.forEach(({ chart, xKey, yKey }) => {
-    const xVal = parseFloat(data[xKey]);
-    const yVal = parseFloat(data[yKey]);
-
-    if (!isNaN(xVal) && !isNaN(yVal)) {
-      chart.data.datasets[0].data.push({ x: xVal, y: yVal });
-
-      if (chart.data.datasets[0].data.length > 30) {
-        chart.data.datasets[0].data.shift();
-      }
-
-      chart.update();
-    }
-  });
   document.getElementById('azimuth').textContent = data.azimuth ?? '--';
   document.getElementById('elevation').textContent = data.elevation ?? '--';
   document.getElementById('lat').textContent = data.lat ?? '--';
@@ -101,7 +46,7 @@ function sendRotation() {
     if (data.status === "command sent") showCommandSentMessage();
     else alert("Rotation failed");
   })
-  .catch(() => alert("Failed to send rotation. Check connection."));
+  .catch(error => alert("Failed to send rotation. Check connection."));
 }
 
 function showCommandSentMessage() {
@@ -145,17 +90,12 @@ socket.on('disconnect', () => {
 
 socket.on('status_update', updateUI);
 
-const customGraphs = [];
-
 function createGraph() {
   const xKey = document.getElementById('xSelect').value;
   const yKey = document.getElementById('ySelect').value;
 
-  // Create container and canvas
   const container = document.createElement('div');
-  container.style.width = '500px';
-  container.style.height = '300px';
-
+  container.classList.add('chart-container');
   const canvas = document.createElement('canvas');
   container.appendChild(canvas);
   document.getElementById('customGraphs').appendChild(container);
@@ -179,8 +119,8 @@ function createGraph() {
       scales: {
         x: {
           type: 'linear',
-          position: 'bottom',
-          title: { display: true, text: xKey }
+          title: { display: true, text: xKey },
+          position: 'bottom'
         },
         y: {
           type: 'linear',
@@ -190,12 +130,22 @@ function createGraph() {
     }
   });
 
-  // Save chart config
   customGraphs.push({ chart: newChart, xKey, yKey });
 }
 
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  return '#' + Array.from({ length: 6 }, () => letters[Math.floor(Math.random() * 16)]).join('');
+function updateCustomGraphs(data) {
+  customGraphs.forEach(({ chart, xKey, yKey }) => {
+    const xVal = parseFloat(data[xKey]);
+    const yVal = parseFloat(data[yKey]);
+
+    if (!isNaN(xVal) && !isNaN(yVal)) {
+      chart.data.datasets[0].data.push({ x: xVal, y: yVal });
+      if (chart.data.datasets[0].data.length > 30) chart.data.datasets[0].data.shift();
+      chart.update();
+    }
+  });
 }
 
+function getRandomColor() {
+  return '#' + Array.from({ length: 6 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+}
