@@ -25,7 +25,6 @@ function updateUI(data) {
   }
 
   updateManualUI(manualControl);
-
 }
 
 function sendRotation() {
@@ -134,9 +133,67 @@ function updateMapPosition(data) {
 
 // WebSocket handling for position updates
 socket.on('status_update', (data) => {
-  console.log(data);
   updateUI(data);
   updateMapPosition(data);  // Update map with the latest position
 });
 
 
+function createGraph() {
+  const xKey = document.getElementById('xSelect').value;
+  const yKey = document.getElementById('ySelect').value;
+
+  const container = document.createElement('div');
+  container.classList.add('chart-container');
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+  document.getElementById('customGraphs').appendChild(container);
+
+  const ctx = canvas.getContext('2d');
+  const newChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: `${yKey} vs ${xKey}`,
+        data: [],
+        borderColor: getRandomColor(),
+        borderWidth: 2,
+        showLine: true
+      }]
+    },
+    options: {
+      animation: false,
+      responsive: true,
+      parsing: false,
+      scales: {
+        x: {
+          type: 'linear',
+          title: { display: true, text: xKey },
+          position: 'bottom'
+        },
+        y: {
+          type: 'linear',
+          title: { display: true, text: yKey }
+        }
+      }
+    }
+  });
+
+  customGraphs.push({ chart: newChart, xKey, yKey });
+}
+
+function updateCustomGraphs(data) {
+  customGraphs.forEach(({ chart, xKey, yKey }) => {
+    const xVal = parseFloat(data[xKey]);
+    const yVal = parseFloat(data[yKey]);
+
+    if (!isNaN(xVal) && !isNaN(yVal)) {
+      chart.data.datasets[0].data.push({ x: xVal, y: yVal });
+      if (chart.data.datasets[0].data.length > 30) chart.data.datasets[0].data.shift();
+      chart.update();
+    }
+  });
+}
+
+function getRandomColor() {
+  return '#' + Array.from({ length: 6 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
+}
