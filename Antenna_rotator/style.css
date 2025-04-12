@@ -1,0 +1,119 @@
+/* Base Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  color: #333;
+}
+
+body.dark {
+  background-color: #1e1e1e;
+  color: #f5f5f5;
+}
+
+/* Top section with live data and rotator control */
+.top-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 20px;
+  padding: 20px;
+}
+
+.coordinate-box,
+.rotator-box {
+  flex: 1;
+  min-width: 300px;
+  max-width: 500px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+body.dark .coordinate-box,
+body.dark .rotator-box {
+  background-color: #2c2c2c;
+  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Rotator status styles */
+#connectionStatus.disconnected,
+#rotatorStatus.not-found {
+  color: red;
+  font-weight: bold;
+}
+
+/* Status boxes */
+.status-box {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+}
+
+body.dark .status-box {
+  background-color: #3a3a3a;
+}
+
+/* Command sent box */
+.command-sent-box {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #d1ffd1;
+  color: #006600;
+  border-radius: 6px;
+  display: none;
+}
+
+/* Graph Section */
+.graph-section {
+  margin: 40px auto;
+  max-width: 1200px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  padding: 30px;
+}
+
+body.dark .graph-section {
+  background-color: #2a2a2a;
+}
+
+/* Graph container for custom graphs */
+.custom-graph-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.custom-graph-container > div {
+  width: 500px;
+  height: 300px;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+body.dark .custom-graph-container > div {
+  background: #3a3a3a;
+}
+
+/* Toggle button */
+.toggle-mode {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.toggle-mode:hover {
+  background-color: #0056b3;
+}

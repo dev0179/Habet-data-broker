@@ -1,25 +1,135 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rotator Control</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
-    body { font-family: Arial, sans-serif; background: #f4f4f4; text-align: center; margin: 0; padding: 20px; }
-    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-    h1, h2 { margin-bottom: 15px; }
-    .status-box { padding: 15px; margin: 10px 0; border-radius: 5px; background: #eaeaea; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      gap: 50px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      background: #1e1e1e;
+      color: #f0f0f0;
+    }
+
+    .coordinate-box {
+      width: 250px;
+      background: #eaeaea;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: left;
+      height: fit-content;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    body.dark .coordinate-box {
+      background: #333;
+    }
+
+    .container {
+      max-width: 600px;
+      flex-grow: 1;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark .container {
+      background: #2b2b2b;
+    }
+
+    .status-box {
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      background: #eaeaea;
+    }
+
+    body.dark .status-box {
+      background: #3a3a3a;
+    }
+
     .connected { color: green; font-weight: bold; }
-    .disconnected, .not-found { color: red; font-weight: bold; }
-    input { width: 80%; padding: 8px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; }
-    button { padding: 10px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
-    button:hover { background: #0056b3; }
-    .command-sent-box { display: none; padding: 15px; margin: 10px 0; border-radius: 5px; background: #d4edda; color: green; font-weight: bold; }
-    #map { height: 300px; width: 100%; margin-top: 10px; border-radius: 5px; }
+    .disconnected, .not-found { color: rgb(224, 16, 16); font-weight: bold; }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin: 8px 0;
+      text-align: center;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 10px 25px;
+      margin-top: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .command-sent-box {
+      display: none;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 5px;
+      background: #d4edda;
+      color: green;
+      font-weight: bold;
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 8px 14px;
+      background: #555;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .toggle-mode:hover {
+      background: #333;
+    }
   </style>
 </head>
 <body>
+
+  <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light</button>
+
+  <div class="coordinate-box">
+    <h3>Live Data</h3>
+    <p>Latitude: <span id="lat">--</span></p>
+    <p>Longitude: <span id="lon">--</span></p>
+    <p>Altitude: <span id="alt">--</span></p>
+    <p>Speed: <span id="speed">--</span></p>
+    <p>Pressure: <span id="pressure">--</span></p>
+    <p>Temperature: <span id="temp">--</span></p>
+    <p>Humidity: <span id="humidity">--</span></p>
+    <p>Volt: <span id="volt">--</span></p>
+  </div>
+
   <div class="container">
     <h1>Rotator Control</h1>
     <p id="connectionStatus" class="disconnected">Disconnected from WebSocket</p>
@@ -34,81 +144,123 @@
     <div class="status-box">
       <h2>Manual Control</h2>
       <input type="number" id="azimuthInput" placeholder="Azimuth (0-360)" min="0" max="360">
-      <input type="number" id="elevationInput" placeholder="Elevation (0-90)" min="0" max="90">
+      <input type="number" id="elevationInput" placeholder="Elevation (0-180)" min="0" max="180">
+      <br>
       <button onclick="sendRotation()">Rotate</button>
+      <br>
+      <button onclick="toggleManualControl()">Toggle Manual Control</button>
+      <p id="manualStatus">Auto mode active</p>
     </div>
 
     <div id="commandSentBox" class="command-sent-box">Command Sent</div>
-
-    <div class="status-box">
-      <h2>Live Location Map</h2>
-      <div id="map"></div>
-    </div>
   </div>
 
-  <!-- Scripts -->
+  <div class="graph_container" style="max-width: 1000px;">
+    <h2>Live Graph: Temperature & Altitude</h2>
+    <canvas id="liveChart" width="800" height="300"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    const SERVER_IP = 'http://localhost:5053';
-    const socket = io(SERVER_IP, { transports: ['websocket'], reconnection: true });
-
-    // Leaflet map init
-    const map = L.map('map').setView([42.027, -93.654], 13);
-    const pathCoords = [];
-    const pathLine = L.polyline(pathCoords, { color: 'blue' }).addTo(map);
-
-    const balloonIcon = L.icon({
-      iconUrl: 'https://cdn-icons-png.flaticon.com/512/1319/1319945.png',
-      iconSize: [32, 32],
-      iconAnchor: [16, 16]
+    const ctx = document.getElementById('liveChart').getContext('2d');
+    const liveChart = new Chart(ctx, {
+      type: 'line', // Can be 'scatter' if you want just points
+      data: {
+        datasets: [
+          {
+            label: 'Temperature (°C) vs Altitude (km)',
+            data: [], // Format: {x: altitude, y: temperature}
+            borderColor: 'red',
+            borderWidth: 2,
+            showLine: true // Set to false if you want scatter points only
+          }
+        ]
+      },
+      options: {
+        animation: false,
+        responsive: true,
+        parsing: false, // Needed for x/y object pairs
+        scales: {
+          x: {
+            type: 'linear',
+            position: 'bottom',
+            title: {
+              display: true,
+              text: 'Altitude (km)'
+            }
+          },
+          y: {
+            type: 'linear',
+            title: {
+              display: true,
+              text: 'Temperature (°C)'
+            }
+          }
+        }
+      }
     });
 
-    const marker = L.marker([42.027, -93.654], { icon: balloonIcon }).addTo(map);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
-    }).addTo(map);
+    const SERVER_IP = 'http://10.24.220.47:5053';
+    const socket = io(SERVER_IP, { transports: ['websocket'], reconnection: true });
+
 
     function updateUI(data) {
       const serialConnected = data['serial connected'];
+      const manualControl = data['manual_control'];  // this now works correctly
+
+      const now = new Date().toLocaleTimeString();
+      const temperature = parseFloat(data.temperature);
+      const altitude = parseFloat(data.alt);
+
+      //graph temp vs alt
+      
+
+      liveChart.data.labels.push(now);
+      liveChart.data.datasets[0].data.push(temperature);
+      liveChart.data.datasets[1].data.push(altitude);
+
+      // Keep only last 30 entries
+      if (liveChart.data.labels.length > 30) {
+        liveChart.data.labels.shift();
+        liveChart.data.datasets[0].data.shift();
+        liveChart.data.datasets[1].data.shift();
+      }
+
+      liveChart.update();
+      
+      document.getElementById('azimuth').textContent = data.azimuth ?? '--';
+      document.getElementById('elevation').textContent = data.elevation ?? '--';
+      document.getElementById('lat').textContent = data.lat ?? '--';
+      document.getElementById('lon').textContent = data.lon ?? '--';
+      document.getElementById('alt').textContent = data.alt ?? '--';
+      document.getElementById('speed').textContent = data.GPS_Speed ?? '--';
+      document.getElementById('pressure').textContent = data.pressure ?? '--';
+      document.getElementById('temp').textContent = data.temperature ?? '--';
+      document.getElementById('humidity').textContent = data.humidity ?? '--';
+      document.getElementById('volt').textContent = data.volt ?? '--'; 
+
+    
 
       if (serialConnected) {
-        document.getElementById('azimuth').textContent = data.azimuth.toFixed(2);
-        document.getElementById('elevation').textContent = data.elevation.toFixed(2);
         document.getElementById('rotatorStatus').textContent = "Rotator Status: Connected";
         document.getElementById('rotatorStatus').className = "connected";
-
-        if (data.lat && data.lon) {
-          const lat = parseFloat(data.lat);
-          const lon = parseFloat(data.lon);
-
-          marker.setLatLng([lat, lon]);
-          pathCoords.push([lat, lon]);
-          pathLine.setLatLngs(pathCoords);
-          map.setView([lat, lon]);
-        }
       } else {
         document.getElementById('rotatorStatus').textContent = "Rotator Status: Not connected";
         document.getElementById('rotatorStatus').className = "not-found";
-        document.getElementById('azimuth').textContent = "--";
-        document.getElementById('elevation').textContent = "--";
       }
+
+      updateManualUI(manualControl);
     }
 
-    function showCommandSentMessage() {
-      const box = document.getElementById('commandSentBox');
-      box.style.display = 'block';
-      setTimeout(() => box.style.display = 'none', 3000);
-    }
 
     function sendRotation() {
       const azimuth = parseFloat(document.getElementById('azimuthInput').value);
       const elevation = parseFloat(document.getElementById('elevationInput').value);
 
-      if (isNaN(azimuth) || isNaN(elevation) || azimuth < 0 || azimuth > 360 || elevation < 0 || elevation > 90) {
-        alert("Enter valid azimuth (0-360) and elevation (0-90).")
+      if (isNaN(azimuth) || isNaN(elevation) || azimuth < 0 || azimuth > 360 || elevation < 0 || elevation > 180) {
+        alert("Enter valid azimuth (0-360) and elevation (0-180).");
         return;
       }
 
@@ -122,7 +274,38 @@
         if (data.status === "command sent") showCommandSentMessage();
         else alert("Rotation failed");
       })
-      .catch(() => alert("Failed to send rotation. Check connection."));
+      .catch(error => alert("Failed to send rotation. Check connection."));
+    }
+
+    function showCommandSentMessage() {
+      const box = document.getElementById('commandSentBox');
+      box.style.display = 'block';
+      setTimeout(() => box.style.display = 'none', 3000);
+    }
+
+    function toggleMode() {
+      document.body.classList.toggle('dark');
+    }
+
+    function toggleManualControl() {
+      fetch(`${SERVER_IP}/toggle_manual`, { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          updateManualUI(data.manual_control);
+          console.log(data.manual_control); // ✅ Corrected line
+        });
+    }
+
+
+    function updateManualUI(manualControlEnabled) {
+      const statusText = document.getElementById('manualStatus');
+      if (manualControlEnabled) {
+        statusText.textContent = "Manual control enabled";
+        statusText.style.color = "orange";
+      } else {
+        statusText.textContent = "Auto mode active";
+        statusText.style.color = "green";
+      }
     }
 
     socket.on('connect', () => {
@@ -139,3 +322,4 @@
   </script>
 </body>
 </html>
+-->

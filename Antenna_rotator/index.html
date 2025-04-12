@@ -1,0 +1,87 @@
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
+  </head>
+  
+<body>
+    <button class="toggle-mode" onclick="toggleMode()">Toggle Dark/Light</button>
+    <!-- Main Top Section: Live Data + Rotator Control -->
+    <div class="top-section">
+      <!-- Live Data Box -->
+      <div class="coordinate-box">
+        <h3>Live Data</h3>
+        <p>Latitude: <span id="lat">--</span></p>
+        <p>Longitude: <span id="lon">--</span></p>
+        <p>Altitude: <span id="alt">--</span></p>
+        <p>Speed: <span id="speed">--</span></p>
+        <p>Pressure: <span id="pressure">--</span></p>
+        <p>Temperature: <span id="temp">--</span></p>
+        <p>Humidity: <span id="humidity">--</span></p>
+        <p>Volt: <span id="volt">--</span></p>
+      </div>
+  
+      <!-- Rotator Control Box -->
+      <div class="rotator-box">
+        <h1>Rotator Control</h1>
+        <p id="connectionStatus" class="disconnected">Disconnected from WebSocket</p>
+        <p id="rotatorStatus" class="not-found">Rotator Status: Not connected</p>
+  
+        <div class="status-box">
+          <h2>Automatic Tracking</h2>
+          <p>Azimuth: <span id="azimuth">--</span>°</p>
+          <p>Elevation: <span id="elevation">--</span>°</p>
+        </div>
+  
+        <div class="status-box">
+          <h2>Manual Control</h2>
+          <input type="number" id="azimuthInput" placeholder="Azimuth (0-360)" min="0" max="360">
+          <input type="number" id="elevationInput" placeholder="Elevation (0-180)" min="0" max="180">
+          <br>
+          <button onclick="sendRotation()">Rotate</button>
+          <br>
+          <button onclick="toggleManualControl()">Toggle Manual Control</button>
+          <p id="manualStatus">Auto mode active</p>
+        </div>
+  
+        <div id="commandSentBox" class="command-sent-box">Command Sent</div>
+      </div>
+    </div>
+  
+    <!-- Graphs Section -->
+    <div class="graph-section">
+      <h2>Live Graph: Temperature & Altitude</h2>
+      <canvas id="liveChart" width="800" height="300"></canvas>
+  
+      <h2 style="margin-top: 40px;">Create New Graph</h2>
+      <label for="xSelect">X-axis:</label>
+      <select id="xSelect">
+        <option value="alt">Altitude</option>
+        <option value="temperature">Temperature</option>
+        <option value="pressure">Pressure</option>
+        <option value="humidity">Humidity</option>
+        <option value="volt">Volt</option>
+        <option value="GPS_Speed">Speed</option>
+      </select>
+  
+      <label for="ySelect">Y-axis:</label>
+      <select id="ySelect">
+        <option value="temperature">Temperature</option>
+        <option value="alt">Altitude</option>
+        <option value="pressure">Pressure</option>
+        <option value="humidity">Humidity</option>
+        <option value="volt">Volt</option>
+        <option value="GPS_Speed">Speed</option>
+      </select>
+  
+      <button onclick="createGraph()">Create Graph</button>
+  
+      <div id="customGraphs" class="custom-graph-container"></div>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.js"></script>
+    <script src="app.js"></script>
+    
+  </body>
+  
