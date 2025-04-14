@@ -137,6 +137,86 @@ socket.on('status_update', (data) => {
   console.log(data);
   updateUI(data);
   updateMapPosition(data);  // Update map with the latest position
-});
+  updateCustomGraphs(data); 
+  });
 
+
+const customGraphs = [];
+
+function createGraph() {
+  const xKey = document.getElementById('xSelect').value;
+  const yKey = document.getElementById('ySelect').value;
+
+  // Create container and canvas
+  const container = document.createElement('div');
+  container.className = 'graph-container'; // Add a class for styling
+  container.style.width = '500px';
+  container.style.height = '300px';
+
+  const canvas = document.createElement('canvas');
+  container.appendChild(canvas);
+  document.getElementById('customGraphs').appendChild(container);
+
+  const ctx = canvas.getContext('2d');
+  const newChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      datasets: [{
+        label: `${yKey} vs ${xKey}`,
+        data: [],
+        borderColor: getRandomColor(),
+        borderWidth: 2,
+        fill: false,
+        tension: 0.1
+      }]
+    },
+    options: {
+      animation: false,
+      responsive: true,
+      maintainAspectRatio: false,
+      parsing: false,
+      scales: {
+        x: {
+          type: 'linear',
+          position: 'bottom',
+          title: { display: true, text: xKey }
+        },
+        y: {
+          type: 'linear',
+          title: { display: true, text: yKey }
+        }
+      }
+    }
+  });
+
+  // Save chart config
+  customGraphs.push({ chart: newChart, xKey, yKey });
+}
+
+function getRandomColor() {
+  const letters = '0123456789ABCDEF';
+  return '#' + Array.from({ length: 6 }, () => letters[Math.floor(Math.random() * 16)]).join('');
+}
+function updateCustomGraphs(data) {
+  customGraphs.forEach(graph => {
+    const xValue = parseFloat(data[graph.xKey]);
+    const yValue = parseFloat(data[graph.yKey]);
+    
+    if (!isNaN(xValue) && !isNaN(yValue)) {
+      // Add new point to the graph
+      graph.chart.data.datasets[0].data.push({
+        x: xValue,
+        y: yValue
+      });
+      
+      // Limit the number of points to keep the graph readable (optional)
+      if (graph.chart.data.datasets[0].data.length > 100) {
+        graph.chart.data.datasets[0].data.shift();
+      }
+      
+      // Update the chart
+      graph.chart.update();
+    }
+  });
+}
 

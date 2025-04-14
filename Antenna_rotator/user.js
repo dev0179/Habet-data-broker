@@ -1,151 +1,170 @@
-const socket = io('http://10.24.220.47:5053'); // Your WebSocket endpoint
+// WebSocket connection
+const socket = io('http://10.24.220.47:5053');
 
-// Declare the gauges
-let latitudeGauge, longitudeGauge, altitudeGauge, speedGauge;
-let temperatureGauge, humidityGauge, pressureGauge, voltageGauge;
+// Gauge variables
+let gauges = {};
 
-function gaugeInitLog(id, label) {
-  const el = document.getElementById(id);
-  if (!el) {
-    console.error(`❌ Gauge div for ${label} (id="${id}") not found in DOM.`);
-  } else {
-    console.log(`✅ Gauge container ready: #${id}`);
-  }
-  return el;
-}
-
-// Create Gauges
-function createGauges() {
-    try {
-      console.log("🛠️ Initializing gauges...");
-  
-      const gaugeConfigs = [
-        {
-          varRef: 'latitudeGauge',
-          id: "latitude-gauge",
-          label: "Latitude",
-          config: { value: 0, min: -90, max: 90, title: "°", levelColors: ["#00ccff"] }
-        },
-        {
-          varRef: 'longitudeGauge',
-          id: "longitude-gauge",
-          label: "Longitude",
-          config: { value: 0, min: -180, max: 180, title: "°", levelColors: ["#00ccff"] }
-        },
-        {
-          varRef: 'altitudeGauge',
-          id: "altitude-gauge",
-          label: "Altitude",
-          config: { value: 0, min: 0, max: 10000, title: "m", levelColors: ["#ffcc00"] }
-        },
-        {
-          varRef: 'speedGauge',
-          id: "speed-gauge",
-          label: "Speed",
-          config: { value: 0, min: 0, max: 500, title: "km/h", levelColors: ["#00ff00"] }
-        },
-        {
-          varRef: 'temperatureGauge',
-          id: "temperature-gauge",
-          label: "Temperature",
-          config: { value: 0, min: -40, max: 100, title: "°C", levelColors: ["#ff6666"] }
-        },
-        {
-          varRef: 'humidityGauge',
-          id: "humidity-gauge",
-          label: "Humidity",
-          config: { value: 0, min: 0, max: 100, title: "%", levelColors: ["#66ccff"] }
-        },
-        {
-          varRef: 'pressureGauge',
-          id: "pressure-gauge",
-          label: "Pressure",
-          config: { value: 0, min: 800, max: 1100, title: "hPa", levelColors: ["#ffaa33"] }
-        },
-        {
-          varRef: 'voltageGauge',
-          id: "voltage-gauge",
-          label: "Voltage",
-          config: { value: 0, min: 0, max: 15, title: "V", levelColors: ["#cc66ff"] }
-        }
-      ];
-  
-      gaugeConfigs.forEach(gauge => {
-        const { id, label, config, varRef } = gauge;
-        const el = document.getElementById(id);
-  
-        if (!el) {
-          console.error(`❌ [${label}] Gauge DOM element not found: #${id}`);
-          return;
-        }
-  
-        try {
-          window[varRef] = new JustGage({
-            id,
-            ...config
-          });
-          console.log(`✅ [${label}] Gauge initialized: #${id}`, config);
-        } catch (gaugeErr) {
-          console.error(`❌ [${label}] Failed to create gauge #${id}:`, gaugeErr);
-        }
-      });
-  
-      console.log("✅ All gauges processed.");
-  
-    } catch (err) {
-      console.error("❌ Fatal error during gauge initialization:", err);
+// Initialize all gauges
+function initGauges() {
+  // Common gauge configuration
+  const gaugeConfig = {
+    relativeGaugeSize: true,
+    donut: true,
+    donutStartAngle: 90,
+    startAnimationTime: 1000,
+    refreshAnimationTime: 1000,
+    levelColors: ["#00ffcc", "#ff9933"],
+    counter: true,
+    decimals: 2,
+    gaugeWidthScale: 0.6,
+    shadowOpacity: 0.2,
+    shadowSize: 5,
+    shadowVerticalOffset: 3,
+    textRenderer: function(value) {
+      return value.toFixed(2);
     }
-  }
-  
-// Safely parse float values
-function getSafeValue(data, key, fallback = 0) {
-  const raw = data[key];
-  const parsed = parseFloat(raw);
-  if (isNaN(parsed)) {
-    console.warn(`⚠️ Invalid value for "${key}":`, raw);
-    return fallback;
-  }
-  return parsed;
+  };
+
+  // Initialize each gauge
+  gauges.latitude = new JustGage({
+    ...gaugeConfig,
+    id: "latitude-gauge",
+    value: 0,
+    min: -90,
+    max: 90,
+    title: " ",
+    label: "°",
+    levelColors: ["#00ccff", "#0066ff"]
+  });
+
+  gauges.longitude = new JustGage({
+    ...gaugeConfig,
+    id: "longitude-gauge",
+    value: 0,
+    min: -180,
+    max: 180,
+    title: " ",
+    label: "°",
+    levelColors: ["#00ccff", "#0066ff"]
+  });
+
+  gauges.altitude = new JustGage({
+    ...gaugeConfig,
+    id: "altitude-gauge",
+    value: 0,
+    min: 0,
+    max: 10000,
+    title: " ",
+    label: "m",
+    levelColors: ["#ffcc00", "#ff9900"]
+  });
+
+  gauges.speed = new JustGage({
+    ...gaugeConfig,
+    id: "speed-gauge",
+    value: 0,
+    min: 0,
+    max: 100,
+    title: " ",
+    label: "km/h",
+    levelColors: ["#00ff00", "#009900"]
+  });
+
+  gauges.temperature = new JustGage({
+    ...gaugeConfig,
+    id: "temperature-gauge",
+    value: 0,
+    min: -40,
+    max: 100,
+    title: " ",
+    label: "°C",
+    levelColors: ["#ff6666", "#cc0000"]
+  });
+
+  gauges.humidity = new JustGage({
+    ...gaugeConfig,
+    id: "humidity-gauge",
+    value: 0,
+    min: 0,
+    max: 100,
+    title: " ",
+    label: "%",
+    levelColors: ["#66ccff", "#0066cc"]
+  });
+
+  gauges.pressure = new JustGage({
+    ...gaugeConfig,
+    id: "pressure-gauge",
+    value: 0,
+    min: 800,
+    max: 1100,
+    title: " ",
+    label: "hPa",
+    levelColors: ["#ffaa33", "#ff6600"]
+  });
+
+  gauges.voltage = new JustGage({
+    ...gaugeConfig,
+    id: "voltage-gauge",
+    value: 0,
+    min: 0,
+    max: 15,
+    title: " ",
+    label: "V",
+    levelColors: ["#cc66ff", "#9900cc"]
+  });
+
+  console.log("All circular gauges initialized successfully");
 }
 
-// Update data
-function updateData(data) {
-  console.log("📡 Received data:", data);
-
+// Update all gauges with new data
+function updateGauges(data) {
   try {
-    latitudeGauge?.refresh(getSafeValue(data, "lat"));
-    longitudeGauge?.refresh(getSafeValue(data, "lon"));
-    altitudeGauge?.refresh(getSafeValue(data, "alt"));
-    speedGauge?.refresh(getSafeValue(data, "speed"));
-    temperatureGauge?.refresh(getSafeValue(data, "temperature"));
-    humidityGauge?.refresh(getSafeValue(data, "humidity"));
-    pressureGauge?.refresh(getSafeValue(data, "pressure"));
-    voltageGauge?.refresh(getSafeValue(data, "volt"));
-  } catch (err) {
-    console.error("❌ Error refreshing gauges:", err);
+    // Update numeric displays
+    document.getElementById('lat-value').textContent = data.lat ? parseFloat(data.lat).toFixed(6) : '--';
+    document.getElementById('lon-value').textContent = data.lon ? parseFloat(data.lon).toFixed(6) : '--';
+    document.getElementById('alt-value').textContent = data.alt ? parseFloat(data.alt).toFixed(2) : '--';
+    document.getElementById('speed-value').textContent = data.GPS_Speed ? (parseFloat(data.GPS_Speed) * 3.6).toFixed(2) : '--';
+    document.getElementById('temp-value').textContent = data.temperature ? parseFloat(data.temperature).toFixed(2) : '--';
+    document.getElementById('humidity-value').textContent = data.humidity ? parseFloat(data.humidity).toFixed(2) : '--';
+    document.getElementById('pressure-value').textContent = data.pressure ? parseFloat(data.pressure).toFixed(2) : '--';
+    document.getElementById('volt-value').textContent = data.volt ? parseFloat(data.volt).toFixed(2) : '--';
+
+    // Update gauge visuals
+    if (data.lat) gauges.latitude.refresh(parseFloat(data.lat));
+    if (data.lon) gauges.longitude.refresh(parseFloat(data.lon));
+    if (data.alt) gauges.altitude.refresh(parseFloat(data.alt));
+    if (data.GPS_Speed) gauges.speed.refresh(parseFloat(data.GPS_Speed) * 3.6); // Convert m/s to km/h
+    if (data.temperature) gauges.temperature.refresh(parseFloat(data.temperature));
+    if (data.humidity) gauges.humidity.refresh(parseFloat(data.humidity));
+    if (data.pressure) gauges.pressure.refresh(parseFloat(data.pressure));
+    if (data.volt) gauges.voltage.refresh(parseFloat(data.volt));
+  } catch (error) {
+    console.error("Error updating gauges:", error);
   }
 }
 
-// WebSocket Events
+// WebSocket event handlers
 socket.on('connect', () => {
-  const el = document.getElementById('connectionStatus');
-  if (el) el.textContent = "✅ Connected to WebSocket";
-  console.log("🟢 WebSocket connected.");
+  const statusEl = document.getElementById('connectionStatus');
+  statusEl.textContent = "✅ Connected to WebSocket";
+  statusEl.className = "connected";
+  console.log("WebSocket connected");
 });
 
 socket.on('disconnect', () => {
-  const el = document.getElementById('connectionStatus');
-  if (el) el.textContent = "🔌 Disconnected from WebSocket";
-  console.log("🔴 WebSocket disconnected.");
+  const statusEl = document.getElementById('connectionStatus');
+  statusEl.textContent = "🔌 Disconnected from WebSocket";
+  statusEl.className = "disconnected";
+  console.log("WebSocket disconnected");
 });
 
 socket.on('status_update', (data) => {
-  console.log("📬 status_update event received.");
-  updateData(data);
+  console.log("Received telemetry data:", data);
+  updateGauges(data);
 });
 
-// On load
-window.onload = () => {
-  console.log("🚀 Page loaded. Starting gauge setup...");
-  createGauges();
-};
+// Initialize everything when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+  initGauges();
+});
