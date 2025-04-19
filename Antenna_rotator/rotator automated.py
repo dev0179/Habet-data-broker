@@ -202,7 +202,7 @@ def serial_reader():
                     lon = float(parts[2]) / 10000000
                     alt = float(parts[3]) / 1000
                     gps_heading = float(parts[4]) / 100000
-                    gps_speed = float(parts[5]) / 10
+                    gps_speed = float(parts[5]) / 1000
                     gps_pdop = float(parts[6]) / 10
                     pressure = float(parts[7]) / 100
                     temperature = float(parts[8]) / 100
