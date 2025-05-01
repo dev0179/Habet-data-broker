@@ -1,33 +1,3 @@
-const ctx = document.getElementById('liveChart').getContext('2d');
-const liveChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    datasets: [{
-      label: 'Temperature (°C) vs Altitude (km)',
-      data: [],
-      borderColor: 'red',
-      borderWidth: 2,
-      showLine: true
-    }]
-  },
-  options: {
-    animation: false,
-    responsive: true,
-    parsing: false,
-    scales: {
-      x: {
-        type: 'linear',
-        position: 'bottom',
-        title: { display: true, text: 'Altitude (km)' }
-      },
-      y: {
-        type: 'linear',
-        title: { display: true, text: 'Temperature (°C)' }
-      }
-    }
-  }
-});
-
 const SERVER_IP = 'http://10.24.220.47:5053';
 const socket = io(SERVER_IP, { transports: ['websocket'], reconnection: true });
 
@@ -35,31 +5,6 @@ function updateUI(data) {
   const serialConnected = data['serial connected'];
   const manualControl = data['manual_control'];
 
-  const now = new Date().toLocaleTimeString();
-  const temperature = parseFloat(data.temperature);
-  const altitude = parseFloat(data.alt);
-
-  liveChart.data.datasets[0].data.push({ x: altitude, y: temperature });
-
-  if (liveChart.data.datasets[0].data.length > 30) {
-    liveChart.data.datasets[0].data.shift();
-  }
-
-  liveChart.update();
-  customGraphs.forEach(({ chart, xKey, yKey }) => {
-    const xVal = parseFloat(data[xKey]);
-    const yVal = parseFloat(data[yKey]);
-
-    if (!isNaN(xVal) && !isNaN(yVal)) {
-      chart.data.datasets[0].data.push({ x: xVal, y: yVal });
-
-      if (chart.data.datasets[0].data.length > 30) {
-        chart.data.datasets[0].data.shift();
-      }
-
-      chart.update();
-    }
-  });
   document.getElementById('azimuth').textContent = data.azimuth ?? '--';
   document.getElementById('elevation').textContent = data.elevation ?? '--';
   document.getElementById('lat').textContent = data.lat ?? '--';
@@ -80,6 +25,7 @@ function updateUI(data) {
   }
 
   updateManualUI(manualControl);
+
 }
 
 function sendRotation() {
@@ -101,7 +47,7 @@ function sendRotation() {
     if (data.status === "command sent") showCommandSentMessage();
     else alert("Rotation failed");
   })
-  .catch(() => alert("Failed to send rotation. Check connection."));
+  .catch(error => alert("Failed to send rotation. Check connection."));
 }
 
 function showCommandSentMessage() {
@@ -143,7 +89,57 @@ socket.on('disconnect', () => {
   document.getElementById('connectionStatus').className = 'disconnected';
 });
 
-socket.on('status_update', updateUI);
+let map;
+let balloonPath = [];
+
+// Initialize the map
+function initMap(lat, lon) {
+  map = L.map('map').setView([lat, lon], 13);  // Initial position based on lat/lon
+
+  // Set the map tiles (OpenStreetMap)
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Create a marker for the initial position
+  let marker = L.marker([lat, lon]).addTo(map);
+  marker.bindPopup("Balloon Position").openPopup();
+
+  // Store the path of the balloon
+  balloonPath.push([lat, lon]);
+  L.polyline(balloonPath, { color: 'blue' }).addTo(map);
+}
+
+// Update the map with new position from WebSocket data
+function updateMapPosition(data) {
+  const lat = parseFloat(data.lat);
+  const lon = parseFloat(data.lon);
+
+  if (!isNaN(lat) && !isNaN(lon)) {
+    // If map is not initialized, initialize it
+    if (!map) {
+      initMap(lat, lon);
+    } else {
+      // Update the map view and marker position
+      map.setView([lat, lon], 13);
+      const marker = L.marker([lat, lon]).addTo(map);
+      marker.bindPopup("Balloon Position").openPopup();
+
+      // Store and display the balloon's path
+      balloonPath.push([lat, lon]);
+      L.polyline(balloonPath, { color: 'blue' }).addTo(map);
+    }
+  }
+}
+
+// WebSocket handling for position updates
+socket.on('status_update', (data) => {
+  console.log(data);
+  updateUI(data);
+  updateMapPosition(data);  // Update map with the latest position
+  updateCustomGraphs(data); 
+  });
+
 
 const customGraphs = [];
 
@@ -153,6 +149,7 @@ function createGraph() {
 
   // Create container and canvas
   const container = document.createElement('div');
+  container.className = 'graph-container'; // Add a class for styling
   container.style.width = '500px';
   container.style.height = '300px';
 
@@ -169,12 +166,14 @@ function createGraph() {
         data: [],
         borderColor: getRandomColor(),
         borderWidth: 2,
-        showLine: true
+        fill: false,
+        tension: 0.1
       }]
     },
     options: {
       animation: false,
       responsive: true,
+      maintainAspectRatio: false,
       parsing: false,
       scales: {
         x: {
@@ -197,5 +196,27 @@ function createGraph() {
 function getRandomColor() {
   const letters = '0123456789ABCDEF';
   return '#' + Array.from({ length: 6 }, () => letters[Math.floor(Math.random() * 16)]).join('');
+}
+function updateCustomGraphs(data) {
+  customGraphs.forEach(graph => {
+    const xValue = parseFloat(data[graph.xKey]);
+    const yValue = parseFloat(data[graph.yKey]);
+    
+    if (!isNaN(xValue) && !isNaN(yValue)) {
+      // Add new point to the graph
+      graph.chart.data.datasets[0].data.push({
+        x: xValue,
+        y: yValue
+      });
+      
+      // Limit the number of points to keep the graph readable (optional)
+      if (graph.chart.data.datasets[0].data.length > 100) {
+        graph.chart.data.datasets[0].data.shift();
+      }
+      
+      // Update the chart
+      graph.chart.update();
+    }
+  });
 }
 

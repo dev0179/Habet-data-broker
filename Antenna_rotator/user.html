@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mission Control Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1a1a;
+      color: white;
+      margin: 0;
+      padding: 20px;
+    }
+    
+    .dashboard {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    h1 {
+      color: #00ffcc;
+      margin: 0;
+      padding: 10px 0;
+    }
+    
+    #connectionStatus {
+      margin: 10px 0;
+      font-weight: bold;
+      padding: 8px;
+      border-radius: 4px;
+      background: #333;
+      display: inline-block;
+    }
+    
+    .connected {
+      color: #00ff00;
+    }
+    
+    .disconnected {
+      color: #ff3333;
+    }
+    
+    .gauge-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+    
+    .gauge-box {
+      background-color: #222;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    
+    .gauge-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    }
+    
+    .gauge-wrapper {
+      height: 200px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+    }
+    
+    .gauge-title {
+      font-size: 18px;
+      margin: 15px 0 5px;
+      color: #ccc;
+    }
+    
+    .gauge-value {
+      font-size: 24px;
+      font-weight: bold;
+      color: #00ffcc;
+      margin-top: 10px;
+    }
+    
+    .gauge-unit {
+      font-size: 16px;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <header>
+      <h1>Mission Control Dashboard</h1>
+      <div id="connectionStatus" class="disconnected">Connecting to WebSocket...</div>
+    </header>
+
+    <div class="gauge-container">
+      <div class="gauge-box">
+        <div id="latitude-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Latitude</div>
+        <div class="gauge-value" id="lat-value">--</div>
+        <div class="gauge-unit">degrees</div>
+      </div>
+      <div class="gauge-box">
+        <div id="longitude-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Longitude</div>
+        <div class="gauge-value" id="lon-value">--</div>
+        <div class="gauge-unit">degrees</div>
+      </div>
+      <div class="gauge-box">
+        <div id="altitude-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Altitude</div>
+        <div class="gauge-value" id="alt-value">--</div>
+        <div class="gauge-unit">meters</div>
+      </div>
+      <div class="gauge-box">
+        <div id="speed-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Speed</div>
+        <div class="gauge-value" id="speed-value">--</div>
+        <div class="gauge-unit">km/h</div>
+      </div>
+      <div class="gauge-box">
+        <div id="temperature-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Temperature</div>
+        <div class="gauge-value" id="temp-value">--</div>
+        <div class="gauge-unit">°C</div>
+      </div>
+      <div class="gauge-box">
+        <div id="humidity-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Humidity</div>
+        <div class="gauge-value" id="humidity-value">--</div>
+        <div class="gauge-unit">%</div>
+      </div>
+      <div class="gauge-box">
+        <div id="pressure-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Pressure</div>
+        <div class="gauge-value" id="pressure-value">--</div>
+        <div class="gauge-unit">hPa</div>
+      </div>
+      <div class="gauge-box">
+        <div id="voltage-gauge" class="gauge-wrapper"></div>
+        <div class="gauge-title">Voltage</div>
+        <div class="gauge-value" id="volt-value">--</div>
+        <div class="gauge-unit">volts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load required libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.3.0/raphael.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/justgage/1.2.9/justgage.min.js"></script>
+  <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+  <script src="user.js"></script>
+</body>
+</html>
